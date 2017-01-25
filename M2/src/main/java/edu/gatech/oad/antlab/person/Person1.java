@@ -31,8 +31,24 @@ public class Person1 {
 	 */
 	private String calc(String input) {
 	  //Person 1 put your implementation here
-	  return null;
-	}
+
+        if (input == null) {
+            return "";
+        }
+
+		if (input.length() <= 2) {
+			return input;
+		}
+
+		char[] arr = input.toCharArray();
+		String rotated = "";
+		for (int i = 2; i < arr.length; i++) {
+			rotated+= arr[i] + "";
+		}
+        rotated+= arr[0] + "" + arr[1] + "";
+
+        return rotated;
+    }
 	
 	/**
 	 * Return a string rep of this object
