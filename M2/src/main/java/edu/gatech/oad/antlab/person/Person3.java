@@ -44,6 +44,9 @@ public class Person3 {
 	 */
 	private String calc(String input) {
 	  //Person 3 put your implementation here
+		if (input == null) {
+			return "";
+		}
 		int x = input.length() - 1;
 		String s = "";
 		while (x >= 0) {
