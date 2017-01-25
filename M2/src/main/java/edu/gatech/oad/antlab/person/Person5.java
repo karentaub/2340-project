@@ -18,7 +18,7 @@ public class Person5 {
 	 */
   public Person5(String pname) {
     name = pname;
-  }
+  }l
   	/**
 	 * This method should take the string
 	 * input and return its characters rotated
@@ -30,8 +30,10 @@ public class Person5 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 5 put your implementation here
-	  return null;
+      String answer = "";
+      String temp = input.substring(0,2);
+      answer += input.substring(2) + temp;
+	  return answer;
 	}
 	
 	/**
