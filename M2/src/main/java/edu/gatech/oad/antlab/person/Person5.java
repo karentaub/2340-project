@@ -18,7 +18,7 @@ public class Person5 {
 	 */
   public Person5(String pname) {
     name = pname;
-  }l
+  }
   	/**
 	 * This method should take the string
 	 * input and return its characters rotated
