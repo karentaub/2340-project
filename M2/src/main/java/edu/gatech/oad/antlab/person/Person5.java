@@ -31,6 +31,10 @@ public class Person5 {
 	 */
 	private String calc(String input) {
       String answer = "";
+      if(input ==  null) {
+          return answer;
+      }
+        
       String temp = input.substring(0,2);
       answer += input.substring(2) + temp;
 	  return answer;
