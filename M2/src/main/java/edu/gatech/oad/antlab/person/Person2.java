@@ -37,7 +37,7 @@ public class Person2 {
 	  //Person 2 put your implementation here
 		//FOR KAREN
 		if (input == null) {
-			throw new IllegalArgumentException("Input shouldn't be null");
+			throw new IllegalArgumentException("Input should not be null");
 		}
 		List<Character> characters = new ArrayList<>();
         for(char c : input.toCharArray()){
