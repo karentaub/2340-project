@@ -5,13 +5,15 @@
     android:weightSum="1">
 
     <EditText
-        android:text="Username"
+        android:hint="Username"
+        android:textColorHint="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/username_registration_EditText" />
 
     <EditText
-        android:text="Password"
+        android:hint="Password"
+        android:textColorHint="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/password_registration_EditText"

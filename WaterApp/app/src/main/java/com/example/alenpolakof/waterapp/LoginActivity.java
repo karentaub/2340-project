@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private void compareLogin(Intent intent) {
         String inputUsername = username.getText().toString();
         String inputPassword = password.getText().toString();
-        if (inputUsername.equals("username") && inputPassword.equals("password")) {
+        if (inputUsername.equals("user") && inputPassword.equals("pass")) {
             startActivity(intent);
         } else {
             AlertDialog incorrectUsername = new AlertDialog.Builder(LoginActivity.this).create();
