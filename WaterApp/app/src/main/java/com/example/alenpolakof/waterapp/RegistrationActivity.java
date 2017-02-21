@@ -35,11 +35,28 @@ public class RegistrationActivity extends AppCompatActivity{
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //get user & password in textboxes
+                //get name & username & password & usertype in textboxes
+                //name
+                TextView personName = (TextView) findViewById(R.id.name_registration_EditText);
+                String name = personName.getText().toString();
+                //username
                 TextView uname = (TextView) findViewById(R.id.username_registration_EditText);
                 String username = uname.getText().toString();
+                //usertype
+                TextView utype = (TextView) findViewById(R.id.account_type_EditText);
+                String typestring = utype.getText().toString();
+                char type = typestring.charAt(0);
+                int usertype = 0;
+                switch (type) { //set usertype depending on first letter in textbox
+                    case 'a' : usertype = -1;
+                    case 'm' : usertype = 2;
+                    case 'w' : usertype = 1;
+                        break;
+                }
+                //password
                 TextView pass = (TextView) findViewById(R.id.password_registration_EditText);
                 String password = pass.getText().toString();
+
                 //what to do if username conflict
                 if (TempDB.getTempDB().isUsernameTaken(username)) {
                     //show conflict dialog, do nothing
@@ -55,8 +72,8 @@ public class RegistrationActivity extends AppCompatActivity{
                     conflict.show();
                 //if no conflict, successful registration
                 } else {
-                    //add username and password to TempDB list class
-                    TempDB.getTempDB().addUser(username, password);
+                    //add username and password and type to TempDB list class
+                    TempDB.getTempDB().addUser(name, username, type, password);
                     AlertDialog success = new AlertDialog.Builder(RegistrationActivity.this).create();
                     success.setMessage("success in creating new account");
                     final View v1 = v;

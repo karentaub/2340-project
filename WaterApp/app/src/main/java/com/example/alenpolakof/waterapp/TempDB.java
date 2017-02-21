@@ -7,16 +7,20 @@ import java.util.ArrayList;
 
 public class TempDB {
     private static TempDB instance = new TempDB();
+    private ArrayList<String> names;
     private ArrayList<String> usernames;
+    private ArrayList<Integer> types;
+    //-1 admin
+    // 0 user
+    // 1 worker
+    // 2 manager
     private ArrayList<String> passwords;
-    private ArrayList<Integer> type;
-    //1 = user
-    //2 = worker
-    //3 = manager
-    //0 = admin
     private TempDB() {
-        usernames = new ArrayList<String>(12);
-        passwords = new ArrayList<String>(12);
+        this.names = new ArrayList<String>(12);
+        this.usernames = new ArrayList<String>(12);
+        this.types = new ArrayList<Integer>(12);
+        this.passwords = new ArrayList<String>(12);
+
     }
 
     public static TempDB getTempDB() {
@@ -25,8 +29,10 @@ public class TempDB {
     public boolean isUsernameTaken(String s) {
         return usernames.contains(s);
     }
-    public void addUser(String s, String s1) {
-        usernames.add(s);
-        passwords.add(s1);
+    public void addUser(String name, String username, int type, String password) {
+        this.names.add(name);
+        this.usernames.add(username);
+        this.types.add(type);
+        this.passwords.add(password);
     }
 }
