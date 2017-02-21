@@ -4,24 +4,16 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+
     <EditText
-        android:hint="Username"
+        android:hint="Name"
         android:textColorHint="@android:color/holo_blue_light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/username_registration_EditText"
+        android:id="@+id/name_registration_EditText"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="70dp" />
-
-    <Button
-        android:text="Cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancel_registration_button"
-        android:layout_below="@+id/password_registration_EditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
 
     <EditText
         android:hint="Password"
@@ -31,5 +23,42 @@
         android:id="@+id/password_registration_EditText"
         android:layout_marginTop="48dp"
         android:layout_below="@+id/username_registration_EditText"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:hint="Username"
+        android:textColorHint="@android:color/holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/username_registration_EditText"
+        android:layout_below="@+id/name_registration_EditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:hint="Account Type"
+        android:textColorHint="@android:color/holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/account_type_EditText"
+        android:layout_below="@+id/name_registration_EditText"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_registration_button"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/password_registration_EditText"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancel_registration_button"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/register_registration_button"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
