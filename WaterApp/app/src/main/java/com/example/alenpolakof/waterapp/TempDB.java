@@ -9,6 +9,11 @@ public class TempDB {
     private static TempDB instance = new TempDB();
     private ArrayList<String> usernames;
     private ArrayList<String> passwords;
+    private ArrayList<Integer> type;
+    //1 = user
+    //2 = worker
+    //3 = manager
+    //0 = admin
     private TempDB() {
         usernames = new ArrayList<String>(12);
         passwords = new ArrayList<String>(12);
