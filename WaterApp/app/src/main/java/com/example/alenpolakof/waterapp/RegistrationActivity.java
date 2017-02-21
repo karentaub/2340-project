@@ -18,6 +18,8 @@ public class RegistrationActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        //cancel button
         Button cancel = (Button) findViewById(R.id.cancel_registration_button);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,37 +29,52 @@ public class RegistrationActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-//        Button reg = (Button) findViewById(R.id.register_registration_button);
-//        reg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Context = context v.getContext();
-//                Intent intent = new Intent(context, OpeningScreenActivity.class);
-//                TextView uname = (TextView) findViewById(R.id.username_registration_EditText);
-//                String username = uname.getText().toString();
-//                if (getTempDB().contains("username")) {
-//                    AlertDialog conflict = new AlertDialog.Builder(LoginActivity.this).create();
-//                    conflict.setMessage("username already taken!");
-//                    conflict.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                            new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    dialog.dismiss();
-//                                }
-//                            });
-//                } else {
-//                    //add username and password to TempDB list class.
-//                    AlertDialog success = new AlertDialog.Builder(LoginActivity.this).create();
-//                    success.setMessage("username already taken!");
-//                    success.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                            new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    dialog.dismiss();
-//                                }
-//                            });
-//                }
-//            }
-//        });
+
+        //registration button
+        Button reg = (Button) findViewById(R.id.register_registration_button);
+        reg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //get user & password in textboxes
+                TextView uname = (TextView) findViewById(R.id.username_registration_EditText);
+                String username = uname.getText().toString();
+                TextView pass = (TextView) findViewById(R.id.password_registration_EditText);
+                String password = pass.getText().toString();
+                //what to do if username conflict
+                if (TempDB.getTempDB().isUsernameTaken(username)) {
+                    //show conflict dialog, do nothing
+                    AlertDialog conflict = new AlertDialog.Builder(RegistrationActivity.this).create();
+                    conflict.setMessage("username already taken!");
+                    conflict.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    conflict.show();
+                //if no conflict, successful registration
+                } else {
+                    //add username and password to TempDB list class
+                    TempDB.getTempDB().addUser(username, password);
+                    AlertDialog success = new AlertDialog.Builder(RegistrationActivity.this).create();
+                    success.setMessage("success in creating new account");
+                    final View v1 = v;
+                    success.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                    //go to login screen
+                                    Context context = v1.getContext();
+                                    Intent intent = new Intent(context, OpeningScreenActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+                    success.show();
+
+                }
+            }
+        });
     }
 }
