@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class TempDB {
     private static TempDB instance = new TempDB();
+    private String userLogged;
     private ArrayList<String> names;
     private ArrayList<String> usernames;
     private ArrayList<Integer> types;
@@ -20,6 +21,7 @@ public class TempDB {
         this.usernames = new ArrayList<String>(12);
         this.types = new ArrayList<Integer>(12);
         this.passwords = new ArrayList<String>(12);
+        this.userLogged = "";
 
     }
 
@@ -41,5 +43,18 @@ public class TempDB {
         this.usernames.add(username);
         this.types.add(type);
         this.passwords.add(password);
+    }
+    public void setUserLogged(String username) {
+        this.userLogged = username;
+    }
+    //for after login--cannot be used if username wasnt validated yet!!!!!!!!!
+    public String getUserLogged() {
+        return userLogged;
+    }
+    public String getName(String username) {
+        return names.get(usernames.indexOf(username));
+    }
+    public String getPassword(String username) {
+        return passwords.get(usernames.indexOf(username));
     }
 }

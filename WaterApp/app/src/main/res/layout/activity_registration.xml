@@ -16,16 +16,6 @@
         android:layout_marginTop="70dp" />
 
     <EditText
-        android:hint="Password"
-        android:textColorHint="@android:color/holo_blue_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/password_registration_EditText"
-        android:layout_marginTop="48dp"
-        android:layout_below="@+id/username_registration_EditText"
-        android:layout_alignParentStart="true" />
-
-    <EditText
         android:hint="Username"
         android:textColorHint="@android:color/holo_blue_light"
         android:layout_width="match_parent"
@@ -45,20 +35,28 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/register_registration_button"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/password_registration_EditText"
-        android:layout_alignParentStart="true" />
-
-    <Button
         android:text="Cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cancel_registration_button"
-        android:layout_marginTop="23dp"
-        android:layout_below="@+id/register_registration_button"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="57dp"/>
+    <Button
+        android:text="Register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_registration_button"
+        android:layout_above="@+id/cancel_registration_button"
+        android:layout_alignParentStart="true"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password_registration_EditText"
+            android:hint="Password"
+            android:layout_below="@+id/username_registration_EditText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="11dp"/>
 </RelativeLayout>

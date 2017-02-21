@@ -9,14 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.EditText;
 import android.app.AlertDialog;
+import android.widget.TextView;
 
 /**
  * Created by alenpolakof on 2/12/17.
  */
 
 public class LoginActivity extends AppCompatActivity {
-
-
     private EditText username;
     private EditText password;
     @Override
@@ -51,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         String inputUsername = username.getText().toString();
         String inputPassword = password.getText().toString();
         if (TempDB.getTempDB().validateUser(inputUsername, inputPassword)) {
+            TempDB.getTempDB().setUserLogged(inputUsername);
             startActivity(intent);
         } else {
             AlertDialog incorrectUsername = new AlertDialog.Builder(LoginActivity.this).create();
