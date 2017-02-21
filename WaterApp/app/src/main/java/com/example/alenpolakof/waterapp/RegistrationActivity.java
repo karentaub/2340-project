@@ -59,9 +59,9 @@ public class RegistrationActivity extends AppCompatActivity{
 
                 //what to do if username conflict
                 if (TempDB.getTempDB().isUsernameTaken(username)) {
-                    //show conflict dialog, do nothing
+                    //show conflict dialog, do nothing when ok is pressed
                     AlertDialog conflict = new AlertDialog.Builder(RegistrationActivity.this).create();
-                    conflict.setMessage("username already taken!");
+                    conflict.setMessage("Username already taken! Please try something else");
                     conflict.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 @Override
@@ -75,21 +75,20 @@ public class RegistrationActivity extends AppCompatActivity{
                     //add username and password and type to TempDB list class
                     TempDB.getTempDB().addUser(name, username, type, password);
                     AlertDialog success = new AlertDialog.Builder(RegistrationActivity.this).create();
-                    success.setMessage("success in creating new account");
-                    final View v1 = v;
+                    success.setMessage("You successfully created a new account!");
+                    final View v1 = v; //made this so i can use it inside inner class (onclicklistener below)
                     success.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     dialog.dismiss();
-                                    //go to login screen
+                                    //go to login screen when ok is pressed
                                     Context context = v1.getContext();
                                     Intent intent = new Intent(context, OpeningScreenActivity.class);
                                     startActivity(intent);
                                 }
                             });
                     success.show();
-
                 }
             }
         });

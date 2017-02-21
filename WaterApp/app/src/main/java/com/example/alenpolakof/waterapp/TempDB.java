@@ -26,8 +26,15 @@ public class TempDB {
     public static TempDB getTempDB() {
         return instance;
     }
-    public boolean isUsernameTaken(String s) {
-        return usernames.contains(s);
+    public boolean isUsernameTaken(String username) {
+        return usernames.contains(username);
+    }
+    public boolean validateUser(String username, String password) {
+        if (usernames.contains(username)) {
+            int index = usernames.indexOf(username);
+            return passwords.get(index).equals(password);
+        }
+        return false;
     }
     public void addUser(String name, String username, int type, String password) {
         this.names.add(name);
