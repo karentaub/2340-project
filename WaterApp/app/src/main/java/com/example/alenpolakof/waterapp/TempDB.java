@@ -38,6 +38,7 @@ public class TempDB {
         }
         return false;
     }
+
     public void addUser(String name, String username, int type, String password) {
         this.names.add(name);
         this.usernames.add(username);
@@ -47,6 +48,16 @@ public class TempDB {
     public void setUserLogged(String username) {
         this.userLogged = username;
     }
+
+    public void updateUser(String name, String username, int type, String password) {
+        int index = usernames.indexOf(getUserLogged());
+        this.names.set(index, name);
+        this.usernames.set(index, username);
+        this.types.set(index, type);
+        this.passwords.set(index, password);
+        this.userLogged = username;
+    }
+
     //for after login--cannot be used if username wasnt validated yet!!!!!!!!!
     public String getUserLogged() {
         return userLogged;
@@ -56,5 +67,20 @@ public class TempDB {
     }
     public String getPassword(String username) {
         return passwords.get(usernames.indexOf(username));
+    }
+
+
+    public String getType(String username) {
+        int typeAccount = types.get(usernames.indexOf(username));
+        switch (typeAccount) {
+            case -1:
+                return "admin";
+            case 1:
+                return "worker";
+            case 2:
+                return "manager";
+            default:
+                return "user";
+        }
     }
 }

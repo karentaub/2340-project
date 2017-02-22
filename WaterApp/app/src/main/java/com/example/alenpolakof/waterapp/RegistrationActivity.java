@@ -49,7 +49,9 @@ public class RegistrationActivity extends AppCompatActivity{
                 int usertype = 0;
                 switch (type) { //set usertype depending on first letter in textbox
                     case 'a' : usertype = -1;
+                        break;
                     case 'm' : usertype = 2;
+                        break;
                     case 'w' : usertype = 1;
                         break;
                 }
@@ -73,7 +75,7 @@ public class RegistrationActivity extends AppCompatActivity{
                 //if no conflict, successful registration
                 } else {
                     //add username and password and type to TempDB list class
-                    TempDB.getTempDB().addUser(name, username, type, password);
+                    TempDB.getTempDB().addUser(name, username, usertype, password);
                     AlertDialog success = new AlertDialog.Builder(RegistrationActivity.this).create();
                     success.setMessage("You successfully created a new account!");
                     final View v1 = v; //made this so i can use it inside inner class (onclicklistener below)
@@ -84,7 +86,7 @@ public class RegistrationActivity extends AppCompatActivity{
                                     dialog.dismiss();
                                     //go to login screen when ok is pressed
                                     Context context = v1.getContext();
-                                    Intent intent = new Intent(context, OpeningScreenActivity.class);
+                                    Intent intent = new Intent(context, LoginActivity.class);
                                     startActivity(intent);
                                 }
                             });
