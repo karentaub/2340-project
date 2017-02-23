@@ -9,12 +9,19 @@ import android.content.Context;
 
 public class OpeningScreenActivity extends AppCompatActivity {
 
+
+    /**
+     * this basically sets the layout of the opening screen and
+     * defines button functions
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opening_screen);
         Button login = (Button) findViewById(R.id.login_button);
         Button register = (Button) findViewById(R.id.register_button);
+        //set login button to move to login screen
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,6 +30,7 @@ public class OpeningScreenActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //register button moves to registration screen
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

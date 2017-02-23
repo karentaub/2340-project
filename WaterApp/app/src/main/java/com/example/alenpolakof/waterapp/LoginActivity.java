@@ -46,6 +46,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * crossreferences info given at login screen w/ database to see if login
+     * is valid, logs in if yes, if not shows alert dialog
+     * @param intent
+     */
     private void compareLogin(Intent intent) {
         String inputUsername = username.getText().toString();
         String inputPassword = password.getText().toString();

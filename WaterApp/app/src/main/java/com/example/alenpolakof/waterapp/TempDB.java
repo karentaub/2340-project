@@ -7,15 +7,19 @@ import java.util.ArrayList;
 
 public class TempDB {
     private static TempDB instance = new TempDB();
-    private String userLogged;
-    private ArrayList<String> names;
-    private ArrayList<String> usernames;
-    private ArrayList<Integer> types;
+    private String userLogged; //user logged in
+    private ArrayList<String> names; //array of names of users
+    private ArrayList<String> usernames; //array of usernames
+    private ArrayList<Integer> types; //array of types
     //-1 admin
     // 0 user
     // 1 worker
     // 2 manager
-    private ArrayList<String> passwords;
+    private ArrayList<String> passwords; // array of passwords
+
+    /**
+     * initializes tempdb, private constructor so we only have one instance
+     */
     private TempDB() {
         this.names = new ArrayList<String>(12);
         this.usernames = new ArrayList<String>(12);
@@ -25,12 +29,30 @@ public class TempDB {
 
     }
 
+    /**
+     * tempdb instance used in activities (to guarantee all are using the same)
+     * @return tempdb instance
+     */
     public static TempDB getTempDB() {
         return instance;
     }
+
+    /**
+     * logic to prevent equal usernames (we want usernames to be unique)
+     * @param username attempt by user
+     * @return boolean saying if username is taken
+     */
     public boolean isUsernameTaken(String username) {
         return usernames.contains(username);
     }
+
+    /**
+     * checks if username exists, and if so, if password matches
+     * @param username entered by users
+     * @param password entered by user
+     * @return boolean if the username exists and if the password is the right
+     * one for the username
+     */
     public boolean validateUser(String username, String password) {
         if (usernames.contains(username)) {
             int index = usernames.indexOf(username);
@@ -39,16 +61,36 @@ public class TempDB {
         return false;
     }
 
+    /**
+     * adds user to database
+     * @param name of user
+     * @param username of user (unique)
+     * @param type of account
+     * @param password to validate login
+     */
     public void addUser(String name, String username, int type, String password) {
         this.names.add(name);
         this.usernames.add(username);
         this.types.add(type);
         this.passwords.add(password);
     }
+
+    /**
+     * sets username of userlogged to id user permissions and know what profile
+     * to edit
+     * @param username (only thing that is unique)
+     */
     public void setUserLogged(String username) {
         this.userLogged = username;
     }
 
+    /**
+     * if user edits their profile this function updates tempdb instance
+     * @param name of user
+     * @param username of user
+     * @param type of account
+     * @param password to validate login
+     */
     public void updateUser(String name, String username, int type, String password) {
         int index = usernames.indexOf(getUserLogged());
         this.names.set(index, name);
@@ -59,17 +101,39 @@ public class TempDB {
     }
 
     //for after login--cannot be used if username wasnt validated yet!!!!!!!!!
+
+    /**
+     * returns userlogged for use outisde class
+     * @return user that is logged in right now or empty string if no user is
+     * logged in
+     */
     public String getUserLogged() {
         return userLogged;
     }
+
+    /**
+     * gets name of person with username given
+     * @param username of account wanted
+     * @return name of person
+     */
     public String getName(String username) {
         return names.get(usernames.indexOf(username));
     }
+
+    /**
+     * gets password of person w/ username given
+     * @param username
+     * @return person's password
+     */
     public String getPassword(String username) {
         return passwords.get(usernames.indexOf(username));
     }
 
-
+    /**
+     * get type of account w/ username given
+     * @param username
+     * @return the type of account
+     */
     public String getType(String username) {
         int typeAccount = types.get(usernames.indexOf(username));
         switch (typeAccount) {

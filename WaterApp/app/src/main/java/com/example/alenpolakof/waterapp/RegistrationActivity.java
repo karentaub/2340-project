@@ -15,6 +15,12 @@ import android.widget.TextView;
  */
 
 public class RegistrationActivity extends AppCompatActivity{
+    /**
+     * this sets the layout for the registration page and
+     * button functions
+     * @param savedInstanceState
+     */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
@@ -74,7 +80,7 @@ public class RegistrationActivity extends AppCompatActivity{
                     conflict.show();
                 //if no conflict, successful registration
                 } else {
-                    //add username and password and type to TempDB list class
+                    //add name username and password and type to TempDB list class
                     TempDB.getTempDB().addUser(name, username, usertype, password);
                     AlertDialog success = new AlertDialog.Builder(RegistrationActivity.this).create();
                     success.setMessage("You successfully created a new account!");

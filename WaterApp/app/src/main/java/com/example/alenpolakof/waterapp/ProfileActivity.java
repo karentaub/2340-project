@@ -16,8 +16,15 @@ import android.widget.TextView;
  */
 
 public class ProfileActivity extends AppCompatActivity {
+    /**
+     * this basically defines the layout of the 'edit profile'
+     * page defines button functions and saves the information
+     * put in if it was valid
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set layout and autofill info with what we already know
         setContentView(R.layout.activity_profile);
         EditText name = (EditText) findViewById(R.id.name_profile_EditText);
         EditText password = (EditText) findViewById(R.id.password_profile_EditText);
@@ -39,9 +46,9 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //registration button
-        Button reg = (Button) findViewById(R.id.save_changes_button);
-        reg.setOnClickListener(new View.OnClickListener() {
+        //save button
+        Button save = (Button) findViewById(R.id.save_changes_button);
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //get name & username & password & usertype in textboxes
@@ -83,7 +90,7 @@ public class ProfileActivity extends AppCompatActivity {
                     conflict.show();
                     //if no conflict, successful registration
                 } else {
-                    //add username and password and type to TempDB list class
+                    //add new name, username and password and type to TempDB list class
                     TempDB.getTempDB().updateUser(name, username, usertype, password);
                     AlertDialog success = new AlertDialog.Builder(ProfileActivity.this).create();
                     success.setMessage("You successfully updated your account!");
