@@ -182,4 +182,12 @@ public class TempDB {
         return usernames.indexOf(username);
     }
 
+    public String printReports() {
+        String s = "";
+        for (int i = 0; i < reports.size(); i++) {
+            s += reports.get(i).toString();
+            s += "\n \n";
+        }
+        return s;
+    }
 }

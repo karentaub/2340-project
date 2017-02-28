@@ -11,8 +11,9 @@
             app:srcCompat="@android:drawable/ic_menu_info_details"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:elevation="12dp"
-            android:id="@+id/profile_edit" android:fadingEdge="horizontal|vertical"
+            android:elevation="8dp"
+            android:id="@+id/profile_edit"
+            android:fadingEdge="horizontal|vertical"
             android:cropToPadding="false"/>
 
     <Button
@@ -24,10 +25,20 @@
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
-    <FrameLayout
+    <!--<FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+        -->
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_menu_search"
+                android:elevation="8dp"
+                android:id="@+id/reports_view"
+                android:layout_toLeftOf="@+id/profile_edit"
+        />
+    <!--</FrameLayout> -->
 
     <!--<ListView
         android:id="@+id/navList"
@@ -52,6 +63,14 @@
         android:id="@+id/home"
         android:layout_above="@+id/logoutButton"
         android:layout_alignParentStart="true" />
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/reports_view"
+            android:id="@+id/reports_add"/>
 
 
 </RelativeLayout>

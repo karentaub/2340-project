@@ -25,7 +25,13 @@ public class Report {
         totalReports++;
         reportNumber = totalReports;
     }
-
+    @Override
+    public String toString() {
+        return "Report " + reportNumber + ":\nAs of " + date.toString()
+                + " at location " + location.toString()
+                + "user " + userReport + " reports that the " + waterType +
+                " is in the following codition: " + waterCondition;
+    }
 
 
 }

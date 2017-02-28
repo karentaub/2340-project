@@ -45,5 +45,25 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //button that takes you to view all submitted reports
+        ImageButton repView = (ImageButton) findViewById(R.id.reports_view);
+        repView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ReportViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        //button that takes you to submit a report
+        ImageButton repSub = (ImageButton) findViewById(R.id.reports_add);
+        repSub.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
