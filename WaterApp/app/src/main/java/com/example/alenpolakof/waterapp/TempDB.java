@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public class TempDB {
     private static TempDB instance = new TempDB();
     private String userLogged; //user logged in
-    private ArrayList<String> names; //array of names of users
-    private ArrayList<String> usernames; //array of usernames
-    private ArrayList<String> types; //array of types
-    private ArrayList<Report> reports;
+    private static ArrayList<String> names; //array of names of users
+    private static ArrayList<String> usernames; //array of usernames
+    private static ArrayList<String> types; //array of types
+    private static ArrayList<Report> reports;
 
 
-    private ArrayList<String> passwords; // array of passwords
+    private static ArrayList<String> passwords; // array of passwords
 
     /**
      * initializes tempdb, private constructor so we only have one instance
@@ -72,6 +72,39 @@ public class TempDB {
         this.usernames.add(username);
         this.types.add(type);
         this.passwords.add(password);
+    }
+
+
+    /**
+     * gets names list
+     * @return names list
+     */
+    public static ArrayList<String> getNameList() {
+        return names;
+    }
+
+    /**
+     * gets user list
+     * @return user list
+     */
+    public static ArrayList<String> getUserList() {
+        return usernames;
+    }
+
+    /**
+     * gets type list
+     * @return type list
+     */
+    public static ArrayList<String> getTypesList() {
+        return types;
+    }
+
+    /**
+     * gets password list
+     * @return password list
+     */
+    public static ArrayList<String> getPassList() {
+        return passwords;
     }
 
     public void addReport(Report report) {
@@ -132,6 +165,7 @@ public class TempDB {
         return passwords.get(usernames.indexOf(username));
     }
 
+
     /**
      * gets type of person w/ username given
      * @param username
@@ -139,6 +173,15 @@ public class TempDB {
      */
     public String getType(String username) {
         return types.get(usernames.indexOf(username));
+    }
+
+    /**
+     * gets type of person w/ username given
+     * @param username
+     * @return username's index
+     */
+    public static int getIndex(String username) {
+        return usernames.indexOf(username);
     }
 
 }
