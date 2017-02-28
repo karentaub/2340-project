@@ -20,27 +20,15 @@
             android:id="@+id/register_registration_button"
             android:layout_above="@+id/cancel_registration_button"
             android:layout_alignParentStart="true"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="@android:color/holo_blue_light"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/password_registration_EditText"
-            android:hint="Password"
-            android:layout_below="@+id/username_registration_EditText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="11dp"/>
 
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="14dp"
-        android:layout_marginTop="15dp" />
+        android:layout_marginBottom="41dp"
+        android:layout_above="@+id/register_registration_button"
+        android:layout_alignParentStart="true" />
 
     <EditText
             android:hint="Username"
@@ -48,8 +36,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/username_registration_EditText"
+        android:layout_marginTop="23dp"
+        android:textSize="18dp"
         android:layout_below="@+id/name_registration_EditText"
-        android:layout_alignEnd="@+id/spinner" />
+        android:layout_alignParentStart="true" />
+
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/holo_blue_light"
+            android:id="@+id/password_registration_EditText"
+            android:hint="Password"
+        android:textSize="18dp"
+        android:layout_below="@+id/username_registration_EditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:text=" Account Type"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_marginBottom="25dp"
+        android:textSize="18dp"
+        android:layout_alignBottom="@+id/spinner"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:hint="Name"
@@ -57,18 +69,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/name_registration_EditText"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="61dp"
+        android:textSize="18dp"
+
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Account Type"
-        android:textColor="@android:color/holo_blue_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/password_registration_EditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="11dp" />
 </RelativeLayout>
