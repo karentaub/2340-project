@@ -5,11 +5,13 @@ import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.content.Intent;
 import android.content.Context;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Spinner;
 
 /**
  * Created by Arthur on 2/21/2017.
@@ -29,9 +31,14 @@ public class ProfileActivity extends AppCompatActivity {
         EditText name = (EditText) findViewById(R.id.name_profile_EditText);
         EditText password = (EditText) findViewById(R.id.password_profile_EditText);
         EditText username = (EditText) findViewById(R.id.username_profile_EditText);
-        EditText accountType = (EditText) findViewById(R.id.account_type_profile_EditText);
+        Spinner accountType = (Spinner) findViewById(R.id.spinner2);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Account.accountTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accountType.setAdapter(adapter);
+
         username.setText(TempDB.getTempDB().getUserLogged());
-        accountType.setText(TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()));
+        accountType.setSelection(Account.findPosition(TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged())));
         password.setText(TempDB.getTempDB().getPassword(TempDB.getTempDB().getUserLogged()));
         name.setText(TempDB.getTempDB().getName(TempDB.getTempDB().getUserLogged()));
 
@@ -46,6 +53,30 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //del acc button
+        Button deleteAcc = (Button) findViewById(R.id.del_my_account_button);
+        deleteAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+                builder.setMessage("Are you sure you want to delete your account?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
         //save button
         Button save = (Button) findViewById(R.id.save_changes_button);
         save.setOnClickListener(new View.OnClickListener() {
@@ -59,18 +90,11 @@ public class ProfileActivity extends AppCompatActivity {
                 TextView uname = (TextView) findViewById(R.id.username_profile_EditText);
                 String username = uname.getText().toString();
                 //usertype
-                TextView utype = (TextView) findViewById(R.id.account_type_profile_EditText);
-                String typestring = utype.getText().toString();
-                char type = typestring.charAt(0);
-                int usertype = 0;
-                switch (type) { //set usertype depending on first letter in textbox
-                    case 'a' : usertype = -1;
-                        break;
-                    case 'm' : usertype = 2;
-                        break;
-                    case 'w' : usertype = 1;
-                        break;
-                }
+                Spinner utype = (Spinner) findViewById(R.id.spinner2);
+                String usertype = "User";
+                usertype = (String) utype.getSelectedItem();
+
+
                 //password
                 TextView pass = (TextView) findViewById(R.id.password_profile_EditText);
                 String password = pass.getText().toString();

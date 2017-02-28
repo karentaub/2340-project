@@ -10,12 +10,10 @@ public class TempDB {
     private String userLogged; //user logged in
     private ArrayList<String> names; //array of names of users
     private ArrayList<String> usernames; //array of usernames
-    private ArrayList<Integer> types; //array of types
+    private ArrayList<String> types; //array of types
     private ArrayList<Report> reports;
-    //-1 admin
-    // 0 user
-    // 1 worker
-    // 2 manager
+
+
     private ArrayList<String> passwords; // array of passwords
 
     /**
@@ -24,7 +22,7 @@ public class TempDB {
     private TempDB() {
         this.names = new ArrayList<String>(12);
         this.usernames = new ArrayList<String>(12);
-        this.types = new ArrayList<Integer>(12);
+        this.types = new ArrayList<String>(12);
         this.passwords = new ArrayList<String>(12);
         this.userLogged = "";
 
@@ -69,7 +67,7 @@ public class TempDB {
      * @param type of account
      * @param password to validate login
      */
-    public void addUser(String name, String username, int type, String password) {
+    public void addUser(String name, String username, String type, String password) {
         this.names.add(name);
         this.usernames.add(username);
         this.types.add(type);
@@ -96,7 +94,7 @@ public class TempDB {
      * @param type of account
      * @param password to validate login
      */
-    public void updateUser(String name, String username, int type, String password) {
+    public void updateUser(String name, String username, String type, String password) {
         int index = usernames.indexOf(getUserLogged());
         this.names.set(index, name);
         this.usernames.set(index, username);
@@ -135,21 +133,12 @@ public class TempDB {
     }
 
     /**
-     * get type of account w/ username given
+     * gets type of person w/ username given
      * @param username
-     * @return the type of account
+     * @return person's password
      */
     public String getType(String username) {
-        int typeAccount = types.get(usernames.indexOf(username));
-        switch (typeAccount) {
-            case -1:
-                return "admin";
-            case 1:
-                return "worker";
-            case 2:
-                return "manager";
-            default:
-                return "user";
-        }
+        return types.get(usernames.indexOf(username));
     }
+
 }

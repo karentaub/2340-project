@@ -1,5 +1,8 @@
 package com.example.alenpolakof.waterapp;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Arthur on 2/24/2017.
  */
@@ -7,10 +10,12 @@ package com.example.alenpolakof.waterapp;
 public class Account {
     private String username;
     private String name;
-    private int type;
+    private String type;
     private String password;
 
-    public Account(String user, String name, int type, String pass) {
+    public static List<String> accountTypes = Arrays.asList("User", "Worker", "Manager", "Admin");
+
+    public Account(String user, String name, String type, String pass) {
         this.username = user;
         this.name = name;
         this.type = type;
@@ -22,21 +27,14 @@ public class Account {
     public String getName() {
         return name;
     }
-    public String getType() {
-        switch (type) {
-            case -1:
-                return "admin";
-            case 1:
-                return "worker";
-            case 2:
-                return "manager";
-            default:
-                return "user";
-        }
-    }
+
     public String getPassword() {
         return this.password;
     }
+    public String getType() {
+        return this.type;
+    }
+
 
     public void setUsername(String username) {
         this.username = username;
@@ -46,23 +44,6 @@ public class Account {
         this.name = name;
     }
 
-    public void setType(String type) {
-        char typ = type.charAt(0);
-        switch (typ) {
-            case 'a':
-                this.type = -1;
-                break;
-            case 'w':
-                this.type = 1;
-                break;
-            case 'm':
-                this.type = 2;
-                break;
-            default:
-                this.type = 0;
-                break;
-        }
-    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -70,5 +51,15 @@ public class Account {
     @Override
     public String toString() {
         return this.username;
+    }
+
+
+    public static int findPosition(String code) {
+        int i = 0;
+        while (i < accountTypes.size()) {
+            if (code.equals(accountTypes.get(i))) return i;
+            ++i;
+        }
+        return 0;
     }
 }

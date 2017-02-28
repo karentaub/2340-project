@@ -5,9 +5,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.content.Intent;
 import android.content.Context;
+import android.widget.Spinner;
 import android.widget.TextView;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +19,11 @@ import com.google.firebase.database.DatabaseReference;
  */
 
 public class RegistrationActivity extends AppCompatActivity{
+
+
+
+    private Spinner spinner;
+
     /**
      * this sets the layout for the registration page and
      * button functions
@@ -26,7 +33,18 @@ public class RegistrationActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+
+        /*
+          Set up the adapter to display the allowable account types in the spinner
+         */
+        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, Account.accountTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+
 
         //cancel button
         Button cancel = (Button) findViewById(R.id.cancel_registration_button);
@@ -52,18 +70,9 @@ public class RegistrationActivity extends AppCompatActivity{
                 TextView uname = (TextView) findViewById(R.id.username_registration_EditText);
                 String username = uname.getText().toString();
                 //usertype
-                TextView utype = (TextView) findViewById(R.id.account_type_EditText);
-                String typestring = utype.getText().toString();
-                char type = typestring.charAt(0);
-                int usertype = 0;
-                switch (type) { //set usertype depending on first letter in textbox
-                    case 'a' : usertype = -1;
-                        break;
-                    case 'm' : usertype = 2;
-                        break;
-                    case 'w' : usertype = 1;
-                        break;
-                }
+                String type = "User";
+                type = (String) spinner.getSelectedItem();
+
                 //password
                 TextView pass = (TextView) findViewById(R.id.password_registration_EditText);
                 String password = pass.getText().toString();
@@ -84,7 +93,7 @@ public class RegistrationActivity extends AppCompatActivity{
                 //if no conflict, successful registration
                 } else {
                     //add name username and password and type to TempDB list class
-                    TempDB.getTempDB().addUser(name, username, usertype, password);
+                    TempDB.getTempDB().addUser(name, username, type, password);
                     //create user object!!!
 
 

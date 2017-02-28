@@ -15,33 +15,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="70dp" />
 
-    <EditText
-        android:hint="Username"
-        android:textColorHint="@android:color/holo_blue_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/username_profile_EditText"
-        android:layout_below="@+id/name_profile_EditText"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
-
-    <EditText
-        android:hint="Account Type"
-        android:textColorHint="@android:color/holo_blue_light"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/account_type_profile_EditText"
-        android:layout_below="@+id/name_profile_EditText"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Cancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancel_profile_button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="57dp"/>
     <Button
         android:text="Save"
         android:layout_width="match_parent"
@@ -49,14 +22,61 @@
         android:id="@+id/save_changes_button"
         android:layout_above="@+id/cancel_profile_button"
         android:layout_alignParentStart="true"/>
+
+    <Button
+        android:text="Delete my account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/del_my_account_button"
+        android:layout_marginBottom="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancel_profile_button"
+        android:layout_above="@+id/del_my_account_button"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:hint="Username"
+        android:textColorHint="@android:color/holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/username_profile_EditText"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/name_profile_EditText"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:id="@+id/spinner2"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Account type"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/password_profile_EditText"
+        android:layout_alignParentStart="true" />
+
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColorHint="@android:color/holo_blue_light"
+
             android:ems="10"
             android:id="@+id/password_profile_EditText"
             android:hint="Password"
-            android:layout_below="@+id/username_profile_EditText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="11dp"/>
+        android:layout_below="@+id/username_profile_EditText"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
