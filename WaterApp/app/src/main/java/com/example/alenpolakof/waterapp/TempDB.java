@@ -8,13 +8,11 @@ import java.util.ArrayList;
 public class TempDB {
     private static TempDB instance = new TempDB();
     private String userLogged; //user logged in
-    private static ArrayList<String> names; //array of names of users
-    private static ArrayList<String> usernames; //array of usernames
-    private static ArrayList<String> types; //array of types
-    private static ArrayList<Report> reports;
-
-
-    private static ArrayList<String> passwords; // array of passwords
+    private ArrayList<String> names; //array of names of users
+    private ArrayList<String> usernames; //array of usernames
+    private ArrayList<String> types; //array of types
+    private ArrayList<Report> reports;
+    private ArrayList<String> passwords; // array of passwords
 
     /**
      * initializes tempdb, private constructor so we only have one instance
@@ -79,7 +77,7 @@ public class TempDB {
      * gets names list
      * @return names list
      */
-    public static ArrayList<String> getNameList() {
+    public  ArrayList<String> getNameList() {
         return names;
     }
 
@@ -87,7 +85,7 @@ public class TempDB {
      * gets user list
      * @return user list
      */
-    public static ArrayList<String> getUserList() {
+    public  ArrayList<String> getUserList() {
         return usernames;
     }
 
@@ -95,7 +93,7 @@ public class TempDB {
      * gets type list
      * @return type list
      */
-    public static ArrayList<String> getTypesList() {
+    public  ArrayList<String> getTypesList() {
         return types;
     }
 
@@ -103,7 +101,7 @@ public class TempDB {
      * gets password list
      * @return password list
      */
-    public static ArrayList<String> getPassList() {
+    public  ArrayList<String> getPassList() {
         return passwords;
     }
 
@@ -180,7 +178,7 @@ public class TempDB {
      * @param username
      * @return username's index
      */
-    public static int getIndex(String username) {
+    public  int getIndex(String username) {
         return usernames.indexOf(username);
     }
 
