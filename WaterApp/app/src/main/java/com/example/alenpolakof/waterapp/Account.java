@@ -4,13 +4,13 @@ package com.example.alenpolakof.waterapp;
  * Created by Arthur on 2/24/2017.
  */
 
-public class User {
+public class Account {
     private String username;
     private String name;
     private int type;
     private String password;
 
-    public User(String user, String name, int type, String pass) {
+    public Account(String user, String name, int type, String pass) {
         this.username = user;
         this.name = name;
         this.type = type;

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.content.Intent;
 import android.content.Context;
 import android.widget.TextView;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
 
 /**
  * Created by apolakof on 2/13/17.
@@ -24,6 +26,7 @@ public class RegistrationActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        
 
         //cancel button
         Button cancel = (Button) findViewById(R.id.cancel_registration_button);
@@ -82,6 +85,9 @@ public class RegistrationActivity extends AppCompatActivity{
                 } else {
                     //add name username and password and type to TempDB list class
                     TempDB.getTempDB().addUser(name, username, usertype, password);
+                    //create user object!!!
+
+
                     AlertDialog success = new AlertDialog.Builder(RegistrationActivity.this).create();
                     success.setMessage("You successfully created a new account!");
                     final View v1 = v; //made this so i can use it inside inner class (onclicklistener below)

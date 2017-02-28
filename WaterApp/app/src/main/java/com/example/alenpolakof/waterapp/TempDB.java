@@ -11,6 +11,7 @@ public class TempDB {
     private ArrayList<String> names; //array of names of users
     private ArrayList<String> usernames; //array of usernames
     private ArrayList<Integer> types; //array of types
+    private ArrayList<Report> reports;
     //-1 admin
     // 0 user
     // 1 worker
@@ -73,6 +74,10 @@ public class TempDB {
         this.usernames.add(username);
         this.types.add(type);
         this.passwords.add(password);
+    }
+
+    public void addReport(Report report) {
+        reports.add(report);
     }
 
     /**
