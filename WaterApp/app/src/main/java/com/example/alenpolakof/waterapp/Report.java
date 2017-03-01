@@ -25,9 +25,24 @@ public class Report {
         totalReports++;
         reportNumber = totalReports;
     }
+
+    /**
+     *
+     * @returns user who reported this
+     */
+    public String getUserReport() {
+        return userReport;
+    }
+
+    /**
+     *
+     * @return total num of reports in system
+     */
+
     public static int getTotalReports() {
         return totalReports;
     }
+    @Override
     public String toString() {
         return "Report " + reportNumber + "\n As of " + date.toString() + " user " + userReport
                 + " reports that the water at " + location.toString() + " of type " + waterType

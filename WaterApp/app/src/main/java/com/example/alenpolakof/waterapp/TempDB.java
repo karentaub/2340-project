@@ -141,10 +141,35 @@ public class TempDB {
     public String getType(String username) {
         return types.get(usernames.indexOf(username));
     }
+
+    /**
+     *
+     * @return all the reports in the system
+     */
     public String printReports() {
         String s = "";
         for (int i = 0; i < Report.getTotalReports(); i++ ) {
             s += reports.get(i).toString();
+        }
+        if (s.equals("")) {
+            return "No Reports as of now";
+        }
+        return s;
+    }
+
+    /**
+     *
+     * @return reports of the user logged
+     */
+    public String printMyReports() {
+        String s = "";
+        for (int i = 0; i < Report.getTotalReports(); i++) {
+            if (reports.get(i).getUserReport().equals(userLogged)) {
+                s += reports.get(i).toString();
+            }
+        }
+        if (s.equals("")) {
+            return "No Reports as of now";
         }
         return s;
     }

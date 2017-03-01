@@ -20,7 +20,7 @@ public class ReportViewActivty extends AppCompatActivity {
         setSupportActionBar(toolbar);
         View secLayout = findViewById(R.id.get_report_thing);
         TextView reports = (TextView) secLayout.findViewById(R.id.reports_text);
-        reports.setText(TempDB.getTempDB().printReports());
+        reports.setText(TempDB.getTempDB().printMyReports());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

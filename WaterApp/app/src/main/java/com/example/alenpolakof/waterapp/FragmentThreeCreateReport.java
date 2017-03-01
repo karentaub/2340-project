@@ -71,6 +71,15 @@ public class FragmentThreeCreateReport extends Fragment {
 
             }
         });
+        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_three);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
 
