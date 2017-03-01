@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit_fragment_three"
+        android:elevation="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_three_radioGroup"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/textView">
+
+
+        <RadioButton
+            android:text="Waste"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignStart="@+id/radioGroup"
+            android:layout_marginTop="13dp"
+            android:id="@+id/waste_water_radioButton" />
+        <RadioButton
+            android:text="Treatable-Clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignStart="@+id/radioGroup"
+            android:layout_marginTop="13dp"
+            android:id="@+id/clear_water_radioButton" />
+        <RadioButton
+            android:text="Treatable-Muddy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignStart="@+id/radioGroup"
+            android:layout_marginTop="13dp"
+            android:id="@+id/muddy_water_radioButton" />
+        <RadioButton
+            android:text="Potable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/radioGroup"
+            android:layout_alignStart="@+id/radioGroup"
+            android:layout_marginTop="13dp"
+            android:id="@+id/potable_water_radioButton" />
+
+
+    </RadioGroup>
+
+    <TextView
+        android:text="Please select the water condition:"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:id="@+id/textView"
+        android:layout_marginBottom="24dp"
+        android:layout_above="@+id/fragment_three_radioGroup"
+        android:layout_alignParentStart="true" />
+
+    />
+</RelativeLayout>

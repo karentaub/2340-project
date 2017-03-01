@@ -1,69 +1,105 @@
 package com.example.alenpolakof.waterapp;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.TextView;
 
-/**
- * Created by apolakof on 2/13/17.
- */
+public class HomeActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-public class HomeActivity extends AppCompatActivity {
-    /**
-     * this sets the layout for the home screen (after
-     * login) and sets button functions
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //set layout with welcome + username
         setContentView(R.layout.activity_home);
-        TextView welcome = (TextView) findViewById(R.id.home);
-        welcome.setText("Welcome, " + TempDB.getTempDB().getName(TempDB.getTempDB().getUserLogged()));
-        Button logout = (Button) findViewById(R.id.logoutButton);
-        logout.setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, OpeningScreenActivity.class);
+            public void onClick(View view) {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, ReportCreateActivity.class);
                 startActivity(intent);
             }
         });
-        //button that takes you to edit profile page
-        ImageButton profile = (ImageButton) findViewById(R.id.profile_edit);
-        profile.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-        //button that takes you to view all submitted reports
-        ImageButton repView = (ImageButton) findViewById(R.id.reports_view);
-        repView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, ReportViewActivity.class);
-                startActivity(intent);
-            }
-        });
-        //button that takes you to submit a report
-        ImageButton repSub = (ImageButton) findViewById(R.id.reports_add);
-        repSub.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Context context = v.getContext();
-                Intent intent = new Intent(context, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        TextView usernameDisplay = (TextView) findViewById(R.id.username_nav_textView);
+        usernameDisplay.setText(TempDB.getTempDB().getUserLogged());
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_reports) {
+            Intent intent = new Intent(getApplicationContext(), ReportViewActivty.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_logout) {
+            Intent intent = new Intent(getApplicationContext(), OpeningScreenActivity.class);
+            startActivity(intent);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

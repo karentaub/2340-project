@@ -1,76 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-                android:orientation="vertical" android:layout_width="match_parent"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_info_details"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:elevation="8dp"
-            android:id="@+id/profile_edit"
-            android:fadingEdge="horizontal|vertical"
-            android:cropToPadding="false"/>
-
-    <Button
-        android:text="LogOut"
+    <include
+        layout="@layout/app_bar_home2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/logoutButton"
-        android:elevation="8dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="match_parent" />
 
-    <!--<FrameLayout
-        android:id="@+id/content_frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        -->
-        <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_search"
-                android:elevation="8dp"
-                android:id="@+id/reports_view"
-                android:layout_toLeftOf="@+id/profile_edit"
-        />
-    <!--</FrameLayout> -->
-
-    <!--<ListView
-        android:id="@+id/navList"
-        android:layout_width="200dp"
-        android:elevation="16dp"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="left|start"
-        android:background="#ffeeeeee"/>
-        -->
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_home2"
+        app:menu="@menu/activity_home_drawer"
+        />
 
-
-
-
-    <TextView
-        android:text="WELCOME!"
-        android:layout_width="match_parent"
-        android:textColor="@android:color/holo_blue_light"
-        android:gravity="center"
-        android:textSize="25dp"
-        android:elevation="4dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/home"
-        android:layout_above="@+id/logoutButton"
-        android:layout_alignParentStart="true" />
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="8dp"
-            app:srcCompat="@android:drawable/ic_input_add"
-            android:layout_alignParentTop="true"
-            android:layout_toStartOf="@+id/reports_view"
-            android:id="@+id/reports_add"/>
-
-
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

@@ -57,21 +57,12 @@ public class ProfileActivity extends AppCompatActivity {
         Button deleteAcc = (Button) findViewById(R.id.del_my_account_button);
         deleteAcc.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(final View v) {
+            public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setMessage("Are you sure you want to delete your account?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                int index = TempDB.getTempDB().getIndex(TempDB.getTempDB().getUserLogged());
                                 dialog.dismiss();
-                                TempDB.getTempDB().getPassList().set(index, null);
-                                TempDB.getTempDB().getUserList().set(index, null);
-                                TempDB.getTempDB().getTypesList().set(index, null);
-                                TempDB.getTempDB().getNameList().set(index, null);
-
-                                Context context = v.getContext();
-                                Intent intent = new Intent(context, OpeningScreenActivity.class);
-                                startActivity(intent);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

@@ -12,6 +12,8 @@ public class TempDB {
     private ArrayList<String> usernames; //array of usernames
     private ArrayList<String> types; //array of types
     private ArrayList<Report> reports;
+
+
     private ArrayList<String> passwords; // array of passwords
 
     /**
@@ -22,6 +24,7 @@ public class TempDB {
         this.usernames = new ArrayList<String>(12);
         this.types = new ArrayList<String>(12);
         this.passwords = new ArrayList<String>(12);
+        this.reports = new ArrayList<Report>(12);
         this.userLogged = "";
 
     }
@@ -70,39 +73,6 @@ public class TempDB {
         this.usernames.add(username);
         this.types.add(type);
         this.passwords.add(password);
-    }
-
-
-    /**
-     * gets names list
-     * @return names list
-     */
-    public  ArrayList<String> getNameList() {
-        return names;
-    }
-
-    /**
-     * gets user list
-     * @return user list
-     */
-    public  ArrayList<String> getUserList() {
-        return usernames;
-    }
-
-    /**
-     * gets type list
-     * @return type list
-     */
-    public  ArrayList<String> getTypesList() {
-        return types;
-    }
-
-    /**
-     * gets password list
-     * @return password list
-     */
-    public  ArrayList<String> getPassList() {
-        return passwords;
     }
 
     public void addReport(Report report) {
@@ -163,7 +133,6 @@ public class TempDB {
         return passwords.get(usernames.indexOf(username));
     }
 
-
     /**
      * gets type of person w/ username given
      * @param username
@@ -172,21 +141,10 @@ public class TempDB {
     public String getType(String username) {
         return types.get(usernames.indexOf(username));
     }
-
-    /**
-     * gets type of person w/ username given
-     * @param username
-     * @return username's index
-     */
-    public  int getIndex(String username) {
-        return usernames.indexOf(username);
-    }
-
     public String printReports() {
         String s = "";
-        for (int i = 0; i < reports.size(); i++) {
+        for (int i = 0; i < Report.getTotalReports(); i++ ) {
             s += reports.get(i).toString();
-            s += "\n \n";
         }
         return s;
     }

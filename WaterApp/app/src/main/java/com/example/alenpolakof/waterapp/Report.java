@@ -25,13 +25,15 @@ public class Report {
         totalReports++;
         reportNumber = totalReports;
     }
-    @Override
-    public String toString() {
-        return "Report " + reportNumber + ":\nAs of " + date.toString()
-                + " at location " + location.toString()
-                + "user " + userReport + " reports that the " + waterType +
-                " is in the following codition: " + waterCondition;
+    public static int getTotalReports() {
+        return totalReports;
     }
+    public String toString() {
+        return "Report " + reportNumber + "\n As of " + date.toString() + " user " + userReport
+                + " reports that the water at " + location.toString() + " of type " + waterType
+                + " is in " + waterCondition + " condition. \n \n";
+    }
+
 
 
 }

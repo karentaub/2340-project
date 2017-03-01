@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Longitude"
+        android:gravity="center|center_horizontal"
+        android:ems="10"
+        android:layout_below="@+id/latitude_editText"
+        android:layout_alignStart="@+id/latitude_editText"
+        android:layout_marginTop="69dp"
+        android:id="@+id/longitude_editText" />
+
+    <TextView
+        android:text="Tell us where you are!"
+        android:layout_width="wrap_content"
+        android:gravity="center|center_horizontal"
+        android:textSize="24sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        android:id="@+id/textView3" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Latitude"
+        android:gravity="center|center_horizontal"
+        android:ems="10"
+        android:layout_marginTop="77dp"
+        android:id="@+id/latitude_editText"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/next_fragment_one" />
+
+</RelativeLayout>

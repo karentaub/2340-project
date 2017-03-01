@@ -26,9 +26,7 @@ public class LocationReport {
     public int getLongitude() {
         return longitude;
     }
-
-    @Override
     public String toString() {
-        return "lat: " + latitude + ", lon: " + longitude;
+        return "lat: " + latitude + " lon: " + longitude;
     }
 }
