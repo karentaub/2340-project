@@ -44,6 +44,7 @@ public class FragmentOneCreateReport extends Fragment {
                 false);
         final EditText latitude = (EditText) rootView.findViewById(R.id.latitude_editText);
         final EditText longitude = (EditText) rootView.findViewById(R.id.longitude_editText);
+        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_one);
         Button next = (Button) rootView.findViewById(R.id.next_fragment_one);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +60,14 @@ public class FragmentOneCreateReport extends Fragment {
 
             }
         });
-
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return rootView;
 

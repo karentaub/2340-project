@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ReportViewActivty extends AppCompatActivity {
@@ -21,6 +22,14 @@ public class ReportViewActivty extends AppCompatActivity {
         View secLayout = findViewById(R.id.get_report_thing);
         TextView reports = (TextView) secLayout.findViewById(R.id.reports_text);
         reports.setText(TempDB.getTempDB().printReports());
+        Button cancel = (Button) findViewById(R.id.cancel_create_activity);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

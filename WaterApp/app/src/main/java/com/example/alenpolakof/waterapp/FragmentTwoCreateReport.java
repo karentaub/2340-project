@@ -3,6 +3,8 @@ package com.example.alenpolakof.waterapp;
  * Created by apolakof on 2/28/17.
  */
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -26,6 +28,7 @@ public class FragmentTwoCreateReport extends Fragment {
                 false);
         getActivity();
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.fragment_two_radioGroup);
+        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_two);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -60,6 +63,14 @@ public class FragmentTwoCreateReport extends Fragment {
                     ((ViewPager)getActivity().findViewById(R.id.pager)).setCurrentItem(2, true);
 
                 }
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, HomeActivity.class);
+                startActivity(intent);
             }
         });
 
