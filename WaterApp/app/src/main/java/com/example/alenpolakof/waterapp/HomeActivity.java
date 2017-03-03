@@ -26,6 +26,8 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //View secLayout = findViewById(R.id.get_all_reports_thing);
         TextView reports = (TextView) findViewById(R.id.allreps_text);
         reports.setText(TempDB.getTempDB().printReports());
 
