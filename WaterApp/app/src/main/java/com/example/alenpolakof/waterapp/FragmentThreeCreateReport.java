@@ -33,6 +33,7 @@ public class FragmentThreeCreateReport extends Fragment {
                 false);
 
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.fragment_three_radioGroup);
+        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_three);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -72,6 +73,15 @@ public class FragmentThreeCreateReport extends Fragment {
             }
         });
         Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_three);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

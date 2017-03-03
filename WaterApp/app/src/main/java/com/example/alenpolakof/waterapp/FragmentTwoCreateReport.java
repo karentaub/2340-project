@@ -28,6 +28,7 @@ public class FragmentTwoCreateReport extends Fragment {
                 false);
         getActivity();
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.fragment_two_radioGroup);
+        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_two);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -64,7 +65,6 @@ public class FragmentTwoCreateReport extends Fragment {
                 }
             }
         });
-        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_two);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
