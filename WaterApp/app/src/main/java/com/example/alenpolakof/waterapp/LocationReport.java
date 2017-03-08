@@ -6,11 +6,11 @@ package com.example.alenpolakof.waterapp;
 import android.util.Pair;
 
 public class LocationReport {
-    private Integer latitude;
-    private Integer longitude;
+    private double latitude;
+    private double longitude;
 
 
-    public LocationReport(int latitude, int longitude) {
+    public LocationReport(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
@@ -20,10 +20,10 @@ public class LocationReport {
         return new Pair(latitude, longitude);
     }
 
-    public int getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
     public String toString() {

@@ -173,4 +173,7 @@ public class TempDB {
         }
         return s;
     }
+    public ArrayList<Report> getReports() {
+        return reports;
+    }
 }

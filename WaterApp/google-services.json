@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "746786844441",
+    "firebase_url": "https://waterapp-3f5dd.firebaseio.com",
+    "project_id": "waterapp-3f5dd",
+    "storage_bucket": "waterapp-3f5dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746786844441:android:5d4dc7e8d0f97f23",
+        "android_client_info": {
+          "package_name": "com.example.alenpolakof.waterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746786844441-7mki4ahoqne8ah77rpj58q4mla5tamcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8HMN4TQiXSlHhadiN3MpaWDZh8DlTlqY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

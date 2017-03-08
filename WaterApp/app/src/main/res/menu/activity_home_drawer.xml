@@ -11,6 +11,9 @@
             android:id="@+id/nav_settings"
             android:title="Settings"/>
             <!--android:icon="@drawable/settingicon"-->
+        <item
+            android:id="@+id/view_reports"
+            android:title="View All Reports"/>
 
     </group>
 

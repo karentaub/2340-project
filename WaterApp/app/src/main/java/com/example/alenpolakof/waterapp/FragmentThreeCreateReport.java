@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,8 +59,8 @@ public class FragmentThreeCreateReport extends Fragment {
             public void onClick(View v) {
                 String waterType = ((ReportCreateActivity) getActivity()).getFragmentTwo().getWaterType();
                 Date date = new Date();
-                int latitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLatitudeToSave();
-                int longitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLongitudeToSave();
+                double latitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLatitudeToSave();
+                double longitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLongitudeToSave();
                 LocationReport location = new LocationReport(latitude, longitude);
                 Report toSave =
                         new Report(date, TempDB.getTempDB().getName(TempDB.getTempDB().getUserLogged()),

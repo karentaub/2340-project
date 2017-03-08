@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.alenpolakof.waterapp.model.ReportsMapActivity;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,11 +27,6 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-        //View secLayout = findViewById(R.id.get_all_reports_thing);
-        TextView reports = (TextView) findViewById(R.id.allreps_text);
-        reports.setText(TempDB.getTempDB().printReports());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +98,10 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(getApplicationContext(), OpeningScreenActivity.class);
             startActivity(intent);
-        }
+        } /*else if (id == R.id.view) {
+            Intent intent = new Intent(getApplicationContext(), ReportsMapActivity.class);
+            startActivity(intent);
+        } */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

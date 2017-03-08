@@ -4,6 +4,10 @@ package com.example.alenpolakof.waterapp;
  * Created by apolakof on 2/27/17.
  */
 
+import android.location.Location;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Date;
 
 public class Report {
@@ -47,6 +51,14 @@ public class Report {
         return "Report " + reportNumber + "\n As of " + date.toString() + " user " + userReport
                 + " reports that the water at " + location.toString() + " of type " + waterType
                 + " is in " + waterCondition + " condition. \n \n";
+    }
+    public LatLng getLocation(){
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        return latLng;
+    }
+
+    public int getTitle() {
+        return reportNumber;
     }
 
 
