@@ -32,6 +32,9 @@
             android:name=".ReportViewActivty"
             android:label="@string/title_activity_report_view_activty"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".model.ReportsMapActivity"
+            android:label="ReportsMapActivity"></activity>
 
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

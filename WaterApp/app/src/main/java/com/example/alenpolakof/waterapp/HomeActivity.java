@@ -18,6 +18,7 @@ import android.content.Intent;
 
 import com.example.alenpolakof.waterapp.model.ReportsMapActivity;
 
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -98,10 +99,10 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(getApplicationContext(), OpeningScreenActivity.class);
             startActivity(intent);
-        } /*else if (id == R.id.view) {
+        } else if (id == R.id.view_reports) {
             Intent intent = new Intent(getApplicationContext(), ReportsMapActivity.class);
             startActivity(intent);
-        } */
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

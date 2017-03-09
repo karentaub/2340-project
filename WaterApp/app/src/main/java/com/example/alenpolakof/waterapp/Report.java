@@ -60,6 +60,12 @@ public class Report {
     public int getTitle() {
         return reportNumber;
     }
+    public String getWaterType() {
+        return waterType;
+    }
+    public String getWaterCondition() {
+        return waterCondition;
+    }
 
 
 
