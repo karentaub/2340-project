@@ -6,14 +6,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.alenpolakof.waterapp.HomeActivity;
 import com.example.alenpolakof.waterapp.R;
 import com.example.alenpolakof.waterapp.Report;
+import com.example.alenpolakof.waterapp.ReportViewActivty;
 import com.example.alenpolakof.waterapp.TempDB;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -53,13 +56,44 @@ public class ReportsMapActivity extends AppCompatActivity implements OnMapReadyC
         });
     }
 
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        for(int i = 0; i < reports.size();i++) {
+        for (int i = 0; i < reports.size(); i++) {
             mReport = reports.get(i);
             LatLng waterReportLocation = mReport.getLocation();
-            Marker marker = mMap.addMarker(new MarkerOptions().position(waterReportLocation).title(String.valueOf(mReport.getTitle())));
+            Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(waterReportLocation)
+                    .title(String.valueOf(mReport.getTitle())));
         }
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+    }
+
+    class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        private final View myContentsView;
+
+        CustomInfoWindowAdapter(){
+            myContentsView = getLayoutInflater().inflate(R.layout.info_window, null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            int index = Integer.valueOf(marker.getTitle()) - 1;
+            String text = reports.get(index).toString();
+            TextView textView  = ((TextView)myContentsView.findViewById(R.id.infow_window_text));
+            textView.setText(text);
+            return myContentsView;
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
     }
 }
+
+
