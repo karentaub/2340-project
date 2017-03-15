@@ -62,7 +62,9 @@ public class ReportsMapActivity extends AppCompatActivity implements OnMapReadyC
         }
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
     }
-
+    /*
+     * Class to help show the small info box.
+     */
     class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
         private final View myContentsView;
