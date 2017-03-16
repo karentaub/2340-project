@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+            android:text="Submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_fragment_five"
+            android:elevation="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+
+    <Button
+            android:text="Cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/cancel_fragment_five" />
+    <TextView
+            android:text="Please Inform us of the water's virus and contaminant PPM:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="56dp"
+            android:id="@+id/fragment_five_descrip"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:layout_below="@+id/fragment_five_descrip"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="43dp" android:id="@+id/virus_ppm"
+            android:hint="virus PPM"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:layout_below="@+id/virus_ppm"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="56dp" android:id="@+id/contaminant_ppm"
+            android:hint="contaminant PPM"/>
+
+</RelativeLayout>

@@ -3,6 +3,8 @@ package com.example.alenpolakof.waterapp;
 /**
  * Created by Arthur on 2/21/2017.
  */
+import javax.xml.transform.Source;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TempDB {
@@ -11,8 +13,8 @@ public class TempDB {
     private ArrayList<String> names; //array of names of users
     private ArrayList<String> usernames; //array of usernames
     private ArrayList<String> types; //array of types
-    private ArrayList<Report> reports;
-
+    private ArrayList<Report> purityReports;
+    private ArrayList<Report> sourceReports;
 
     private ArrayList<String> passwords; // array of passwords
 
@@ -24,7 +26,8 @@ public class TempDB {
         this.usernames = new ArrayList<String>(12);
         this.types = new ArrayList<String>(12);
         this.passwords = new ArrayList<String>(12);
-        this.reports = new ArrayList<Report>(12);
+        this.sourceReports = new ArrayList<Report>(12);
+        this.purityReports = new ArrayList<Report>(12);
         this.userLogged = "";
 
     }
@@ -75,8 +78,11 @@ public class TempDB {
         this.passwords.add(password);
     }
 
-    public void addReport(Report report) {
-        reports.add(report);
+    public void addSourceReport(Report report) {
+        sourceReports.add(report);
+    }
+    public void addPurityReport(Report report) {
+        purityReports.add(report);
     }
 
     /**
@@ -148,8 +154,11 @@ public class TempDB {
      */
     public String printReports() {
         String s = "";
-        for (int i = 0; i < Report.getTotalReports(); i++ ) {
-            s += reports.get(i).toString();
+        for (int i = 0; i < SourceReport.getTotalSReports(); i++ ) {
+            s += sourceReports.get(i).toString();
+        }
+        for (int i = 0; i < PurityReport.getTotalPReports(); i++ ) {
+            s += purityReports.get(i).toString();
         }
         if (s.equals("")) {
             return "No Reports as of now";
@@ -163,9 +172,16 @@ public class TempDB {
      */
     public String printMyReports() {
         String s = "";
-        for (int i = 0; i < Report.getTotalReports(); i++) {
-            if (reports.get(i).getUserReport().equals(userLogged)) {
-                s += reports.get(i).toString();
+        for (int i = 0; i < SourceReport.getTotalSReports(); i++) {
+            if (sourceReports.get(i).getUserReport().equals(userLogged)) {
+                s += sourceReports.get(i).toString();
+            }
+        }
+        if (!(getType(instance.getUserLogged()).equalsIgnoreCase("User"))) {
+            for (int i = 0; i < PurityReport.getTotalPReports(); i++) {
+                if (purityReports.get(i).getUserReport().equals(userLogged)) {
+                    s += purityReports.get(i).toString();
+                }
             }
         }
         if (s.equals("")) {
@@ -174,6 +190,9 @@ public class TempDB {
         return s;
     }
     public ArrayList<Report> getReports() {
-        return reports;
+        ArrayList<Report> allReports = new ArrayList<Report>(SourceReport.getTotalSReports() + PurityReport.getTotalPReports());
+        allReports.addAll(sourceReports);
+        allReports.addAll(purityReports);
+        return allReports;
     }
 }

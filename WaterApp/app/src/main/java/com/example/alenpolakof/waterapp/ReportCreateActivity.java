@@ -20,6 +20,14 @@ public class ReportCreateActivity extends AppCompatActivity {
     FragmentTwoCreateReport secondFragment;
     FragmentThreeCreateReport thirdFragment;
     FragmentOneCreateReport firstFragment;
+    FragmentFourCreateReport fourthFragment;
+    FragmentZeroCreateReport zeroFragment;
+    FragmentFiveCreateReport fifthFragment;
+
+    public FragmentFourCreateReport getFourthFragment() {
+        return fourthFragment;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +39,9 @@ public class ReportCreateActivity extends AppCompatActivity {
         firstFragment = new FragmentOneCreateReport();
         secondFragment = new FragmentTwoCreateReport();
         thirdFragment = new FragmentThreeCreateReport();
+        fourthFragment = new FragmentFourCreateReport();
+        zeroFragment = new FragmentZeroCreateReport();
+        fifthFragment = new FragmentFiveCreateReport();
 
 
 
@@ -51,16 +62,22 @@ public class ReportCreateActivity extends AppCompatActivity {
                 return firstFragment;
             } else if (position == 1) {
                 return secondFragment;
-
-            } else {
+            } else if (position == 2) {
                 return thirdFragment;
+            } else if (position == 3) {
+                return zeroFragment;
+            } else if (position == 4) {
+                return fourthFragment;
             }
+            return fifthFragment;
         }
 
         @Override
         public int getCount() {
             // Show 2 total pages.
-            return 3;
+            if (TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()).equals("User")) {
+                return 3;
+            } return 4;
         }
 
     }

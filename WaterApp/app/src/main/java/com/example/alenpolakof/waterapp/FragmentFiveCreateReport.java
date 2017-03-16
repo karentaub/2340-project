@@ -1,7 +1,7 @@
 package com.example.alenpolakof.waterapp;
 
 /**
- * Created by apolakof on 2/28/17.
+ * Created by Arthur on 3/15/2017.
  */
 
 import android.content.Context;
@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentManager;
@@ -22,57 +23,45 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.Date;
 
-public class FragmentThreeCreateReport extends Fragment {
+public class FragmentFiveCreateReport extends Fragment {
 
 
-    String waterCondition;
+    int virusPPM;
+    int contaminantPPM;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_create_report_three, container,
+        View rootView = inflater.inflate(R.layout.fragment_create_report_five, container,
                 false);
 
-        RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.fragment_three_radioGroup);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.waste_water_radioButton) {
-                    waterCondition = "Waste";
-                } else if (checkedId == R.id.clear_water_radioButton) {
-                    waterCondition = "Clear";
-                } else if (checkedId == R.id.muddy_water_radioButton) {
-                    waterCondition = "Muddy";
-                } else if (checkedId == R.id.potable_water_radioButton) {
-                    waterCondition = "Potable";
-                }
-
-            }
-
-
-
-        });
-
-        Button submit = (Button) rootView.findViewById(R.id.submit_fragment_three);
+        final TextView virus = (TextView) rootView.findViewById(R.id.virus_ppm);
+        final TextView contaminant = (TextView) rootView.findViewById(R.id.contaminant_ppm);
+        Button submit = (Button) rootView.findViewById(R.id.submit_fragment_five);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String waterType = ((ReportCreateActivity) getActivity()).getFragmentTwo().getWaterType();
+
+                virusPPM = Integer.parseInt(virus.getText().toString());
+
+                contaminantPPM = Integer.parseInt(contaminant.getText().toString());
+
+                String condition = ((ReportCreateActivity) getActivity()).getFourthFragment().getCondition();
                 Date date = new Date();
                 double latitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLatitudeToSave();
                 double longitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLongitudeToSave();
                 LocationReport location = new LocationReport(latitude, longitude);
                 Report toSave =
-                        new SourceReport(date, TempDB.getTempDB().getName(TempDB.getTempDB().getUserLogged()),
-                            location, waterType, waterCondition);
+                        new PurityReport(date, TempDB.getTempDB().getName(TempDB.getTempDB().getUserLogged()),
+                                location, condition, virusPPM, contaminantPPM);
 
-                TempDB.getTempDB().addSourceReport(toSave);
+                TempDB.getTempDB().addPurityReport(toSave);
                 Intent intent = new Intent(v.getContext(), HomeActivity.class);
                 startActivity(intent);
 
             }
         });
-        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_three);
+        Button cancel = (Button) rootView.findViewById(R.id.cancel_fragment_five);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

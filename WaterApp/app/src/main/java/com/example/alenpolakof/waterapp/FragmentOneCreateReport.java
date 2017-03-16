@@ -60,7 +60,11 @@ public class FragmentOneCreateReport extends Fragment implements OnMapReadyCallb
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ViewPager)getActivity().findViewById(R.id.pager)).setCurrentItem(1, true);
+                if ((TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()).equals("User"))) {
+                    ((ViewPager) getActivity().findViewById(R.id.pager)).setCurrentItem(1, true);
+                } else {
+                    ((ViewPager) getActivity().findViewById(R.id.pager)).setCurrentItem(3);
+                }
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {

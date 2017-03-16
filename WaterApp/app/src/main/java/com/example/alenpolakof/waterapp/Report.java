@@ -4,31 +4,23 @@ package com.example.alenpolakof.waterapp;
  * Created by apolakof on 2/27/17.
  */
 
-import android.location.Location;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Date;
 
-public class Report {
+public abstract class Report {
     private Date date;
-    private int reportNumber;
-    private static int totalReports;
     private String userReport;
     private LocationReport location;
-    private String waterType;
-    private String waterCondition;
 
-    public Report(Date date, String userReport, LocationReport location,
-                  String waterType, String waterCondition) {
+
+    public Report(Date date, String userReport, LocationReport location) {
         this.date = date;
         this.userReport = userReport;
         this.location = location;
-        this.waterType = waterType;
-        this.waterCondition = waterCondition;
-        totalReports++;
-        reportNumber = totalReports;
     }
+    public int getTitle() {return 0;}
 
     /**
      *
@@ -38,35 +30,20 @@ public class Report {
         return userReport;
     }
 
-    /**
-     *
-     * @return total num of reports in system
-     */
-
-    public static int getTotalReports() {
-        return totalReports;
-    }
-    @Override
-    public String toString() {
-        return "Report " + reportNumber + "\n As of " + date.toString() + " user " + userReport
-                + " reports that the water at " + location.toString() + " of type " + waterType
-                + " is in " + waterCondition + " condition. \n \n";
-    }
     public LatLng getLocation(){
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         return latLng;
     }
 
-    public int getTitle() {
-        return reportNumber;
-    }
-    public String getWaterType() {
-        return waterType;
-    }
-    public String getWaterCondition() {
-        return waterCondition;
-    }
+    /**
+     *
+     * @return total num of reports in system
+     */
 
-
+    @Override
+    public String toString() {
+        return "As of " + date.toString() + userReport
+                + " reports that the water at " + location.toString();
+    }
 
 }
