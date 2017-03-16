@@ -34,7 +34,12 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
-                Intent intent = new Intent(context, ReportCreateActivity.class);
+                Intent intent;
+                if (!(TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()).equalsIgnoreCase("user"))) {
+                    intent = new Intent(context, ZeroActivity.class);
+                } else {
+                    intent = new Intent(context, ReportCreateActivity.class);
+                }
                 startActivity(intent);
             }
         });

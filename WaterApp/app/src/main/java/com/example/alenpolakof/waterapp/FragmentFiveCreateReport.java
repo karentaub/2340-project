@@ -46,7 +46,7 @@ public class FragmentFiveCreateReport extends Fragment {
 
                 contaminantPPM = Integer.parseInt(contaminant.getText().toString());
 
-                String condition = ((ReportCreateActivity) getActivity()).getFourthFragment().getCondition();
+                String condition = ((FragmentFourCreateReport) ((ReportCreateActivity) getActivity()).getFragmentTwo()).getCondition();
                 Date date = new Date();
                 double latitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLatitudeToSave();
                 double longitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLongitudeToSave();

@@ -17,16 +17,9 @@ import android.content.Intent;
 public class ReportCreateActivity extends AppCompatActivity {
     String waterType = null;
     ViewPager mViewPager;
-    FragmentTwoCreateReport secondFragment;
-    FragmentThreeCreateReport thirdFragment;
+    Fragment secondFragment;
+    Fragment thirdFragment;
     FragmentOneCreateReport firstFragment;
-    FragmentFourCreateReport fourthFragment;
-    FragmentZeroCreateReport zeroFragment;
-    FragmentFiveCreateReport fifthFragment;
-
-    public FragmentFourCreateReport getFourthFragment() {
-        return fourthFragment;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +32,11 @@ public class ReportCreateActivity extends AppCompatActivity {
         firstFragment = new FragmentOneCreateReport();
         secondFragment = new FragmentTwoCreateReport();
         thirdFragment = new FragmentThreeCreateReport();
-        fourthFragment = new FragmentFourCreateReport();
-        zeroFragment = new FragmentZeroCreateReport();
-        fifthFragment = new FragmentFiveCreateReport();
+        if (ZeroActivity.isPur) {
+            secondFragment = new FragmentFourCreateReport();
+            thirdFragment = new FragmentFiveCreateReport();
+            ZeroActivity.isPur = false;
+        }
 
 
 
@@ -62,27 +57,19 @@ public class ReportCreateActivity extends AppCompatActivity {
                 return firstFragment;
             } else if (position == 1) {
                 return secondFragment;
-            } else if (position == 2) {
-                return thirdFragment;
-            } else if (position == 3) {
-                return zeroFragment;
-            } else if (position == 4) {
-                return fourthFragment;
             }
-            return fifthFragment;
+            return thirdFragment;
         }
 
         @Override
         public int getCount() {
             // Show 2 total pages.
-            if (TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()).equals("User")) {
                 return 3;
-            } return 4;
         }
 
     }
 
-    public FragmentTwoCreateReport getFragmentTwo() {
+    public Fragment getFragmentTwo() {
         return secondFragment;
     }
 

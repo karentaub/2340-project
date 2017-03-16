@@ -23,7 +23,7 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ReportCreateActivity" />
-
+        <activity android:name=".ZeroActivity" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBQ-4MjldsoeDAGZGGcEr1zL1UamDOIkEE" />

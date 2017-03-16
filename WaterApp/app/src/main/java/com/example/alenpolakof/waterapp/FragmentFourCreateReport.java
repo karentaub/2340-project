@@ -30,9 +30,9 @@ public class FragmentFourCreateReport extends Fragment {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.unsafe_water_radioButton) {
+                if (checkedId == R.id.safe_water_radioButton) {
                     condition = "Safe";
-                } else if (checkedId == R.id.unsafe_water_radioButton) {
+                } else if (checkedId == R.id.treatable_water_radioButton) {
                     condition = "Treatable";
                 } else if (checkedId == R.id.unsafe_water_radioButton) {
                     condition = "Unsafe";
@@ -44,7 +44,7 @@ public class FragmentFourCreateReport extends Fragment {
 
         });
 
-        Button next = (Button) rootView.findViewById(R.id.next_fragment_two);
+        Button next = (Button) rootView.findViewById(R.id.next_fragment_four);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +52,7 @@ public class FragmentFourCreateReport extends Fragment {
                     Toast.makeText(v.getContext(), "Please choose one",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    ((ViewPager)getActivity().findViewById(R.id.pager)).setCurrentItem(5);
+                    ((ViewPager)getActivity().findViewById(R.id.pager)).setCurrentItem(2, true);
 
                 }
             }

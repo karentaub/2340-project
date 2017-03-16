@@ -18,7 +18,7 @@
 
 
         <RadioButton
-                android:text="Safe"
+                android:text="Source Report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/radioGroup"
@@ -26,7 +26,7 @@
                 android:layout_marginTop="13dp"
                 android:id="@+id/source_report_radioButton" />
         <RadioButton
-                android:text="Treatable"
+                android:text="Purity Report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/radioGroup"
@@ -38,7 +38,7 @@
     </RadioGroup>
 
     <TextView
-            android:text="Please select the condition of water:"
+            android:text="Please select the type of Report you wish to submit:"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -57,7 +57,7 @@ public class FragmentThreeCreateReport extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String waterType = ((ReportCreateActivity) getActivity()).getFragmentTwo().getWaterType();
+                String waterType = ((FragmentTwoCreateReport) ((ReportCreateActivity) getActivity()).getFragmentTwo()).getWaterType();
                 Date date = new Date();
                 double latitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLatitudeToSave();
                 double longitude = ((ReportCreateActivity) getActivity()).getFragmentOne().getLongitudeToSave();
