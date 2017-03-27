@@ -42,7 +42,7 @@ public abstract class Report {
 
     @Override
     public String toString() {
-        return "As of " + date.toString() + userReport
+        return "As of " + date.toString()+ " " + userReport
                 + " reports that the water at " + location.toString();
     }
 

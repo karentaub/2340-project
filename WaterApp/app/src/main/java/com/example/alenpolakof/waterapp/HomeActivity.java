@@ -105,7 +105,7 @@ public class HomeActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), OpeningScreenActivity.class);
             startActivity(intent);
         } else if (id == R.id.view_reports) {
-            Intent intent = new Intent(getApplicationContext(), ReportsMapActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ReportViewAllActivity.class);
             startActivity(intent);
         }
 

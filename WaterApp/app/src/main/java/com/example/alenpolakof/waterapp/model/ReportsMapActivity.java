@@ -36,6 +36,9 @@ public class ReportsMapActivity extends AppCompatActivity implements OnMapReadyC
         super.onCreate(savedInstanceState);
         waterReportsDB = TempDB.getTempDB();
         reports = waterReportsDB.getReports();
+        if (waterReportsDB.getType(waterReportsDB.getUserLogged()).equalsIgnoreCase("user")) {
+            reports = waterReportsDB.getSourceReports();
+        }
         setContentView(R.layout.activity_report_map);
         mSupportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mSupportMapFragment.getMapAsync(this);

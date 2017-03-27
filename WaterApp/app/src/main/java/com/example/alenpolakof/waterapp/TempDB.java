@@ -157,8 +157,10 @@ public class TempDB {
         for (int i = 0; i < SourceReport.getTotalSReports(); i++ ) {
             s += sourceReports.get(i).toString();
         }
-        for (int i = 0; i < PurityReport.getTotalPReports(); i++ ) {
-            s += purityReports.get(i).toString();
+        if (!(getType(instance.getUserLogged()).equalsIgnoreCase("User"))) {
+            for (int i = 0; i < PurityReport.getTotalPReports(); i++) {
+                s += purityReports.get(i).toString();
+            }
         }
         if (s.equals("")) {
             return "No Reports as of now";
@@ -191,8 +193,12 @@ public class TempDB {
     }
     public ArrayList<Report> getReports() {
         ArrayList<Report> allReports = new ArrayList<Report>(SourceReport.getTotalSReports() + PurityReport.getTotalPReports());
-        allReports.addAll(sourceReports);
         allReports.addAll(purityReports);
+        allReports.addAll(sourceReports);
         return allReports;
+    }
+
+    public ArrayList<Report> getSourceReports() {
+        return sourceReports;
     }
 }
