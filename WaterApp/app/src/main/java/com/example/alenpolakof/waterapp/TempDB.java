@@ -157,7 +157,8 @@ public class TempDB {
         for (int i = 0; i < SourceReport.getTotalSReports(); i++ ) {
             s += sourceReports.get(i).toString();
         }
-        if (!(getType(instance.getUserLogged()).equalsIgnoreCase("User"))) {
+        if (!(getType(instance.getUserLogged()).equalsIgnoreCase("User"))
+                && !(getType(instance.getUserLogged()).equalsIgnoreCase("worker"))) {
             for (int i = 0; i < PurityReport.getTotalPReports(); i++) {
                 s += purityReports.get(i).toString();
             }
@@ -179,7 +180,8 @@ public class TempDB {
                 s += sourceReports.get(i).toString();
             }
         }
-        if (!(getType(instance.getUserLogged()).equalsIgnoreCase("User"))) {
+        if (!(getType(instance.getUserLogged()).equalsIgnoreCase("User"))
+                && !(getType(instance.getUserLogged()).equalsIgnoreCase("worker"))) {
             for (int i = 0; i < PurityReport.getTotalPReports(); i++) {
                 if (purityReports.get(i).getUserReport().equals(userLogged)) {
                     s += purityReports.get(i).toString();
