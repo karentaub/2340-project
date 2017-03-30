@@ -17,9 +17,13 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class FragmentOneHistorical extends Fragment {
-    String condition = null;
+    String option = null;
     int year;
+    double latitude;
+    double longitude;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
@@ -28,15 +32,17 @@ public class FragmentOneHistorical extends Fragment {
                 false);
         getActivity();
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.historical_radioGroup);
-        final EditText textyear = (EditText) rootView.findViewById(R.id.historical_year);
+        final EditText textlon = (EditText) rootView.findViewById(R.id.hlongitude);
+        final EditText textlat = (EditText) rootView.findViewById(R.id.hlatitude);
+
         Button cancel = (Button) rootView.findViewById(R.id.hcancel_fragment_one);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.contaminant_radioButton) {
-                    condition = "Contaminant";
+                    option = "Contaminant";
                 } else if (checkedId == R.id.virus_radioButton) {
-                    condition = "Virus";
+                    option = "Virus";
                 }
             }
         });
@@ -45,12 +51,15 @@ public class FragmentOneHistorical extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (condition == null) {
+                if (option == null) {
                     Toast.makeText(v.getContext(), "Please choose virus or contaminant",
                             Toast.LENGTH_SHORT).show();
-                } else if (!isValidYear(textyear)) {
-                    Toast.makeText(v.getContext(), "Please input valid year",
-                            Toast.LENGTH_SHORT).show();
+                } else if (!isValidLat(textlat)) {
+                Toast.makeText(v.getContext(), "Please input valid latitude",
+                        Toast.LENGTH_SHORT).show();
+                } else if (!isValidLong(textlon)) {
+                Toast.makeText(v.getContext(), "Please input valid longitude",
+                        Toast.LENGTH_SHORT).show();
                 } else {
                     ((ViewPager)getActivity().findViewById(R.id.pager)).setCurrentItem(2, true);
                 }
@@ -69,24 +78,40 @@ public class FragmentOneHistorical extends Fragment {
 
     }
 
-    public String getCondition() {
-        return condition;
-    }
 
-    public boolean isValidYear(EditText textyear) {
+
+    public boolean isValidLat(EditText lat) {
         try {
-            year = Integer.parseInt(textyear.getText().toString());
+            latitude = Double.parseDouble(lat.getText().toString());
 
         } catch (IllegalArgumentException e) {
             return false;
         }
+        return (latitude >= -90 && latitude < 90);
 
-        if(year >= 0 && year <= 2017) {
-            return true;
+    }
+
+    public boolean isValidLong(EditText lon) {
+        try {
+            longitude = Double.parseDouble(lon.getText().toString());
+
+        } catch (IllegalArgumentException e) {
+            return false;
         }
-        return false;
+        return (latitude >= -180 && latitude < 180);
+    }
 
-
+    public String getOption() {
+        return option;
+    }
+    public int getYear() {
+        return year;
+    }
+    public double getLat() {
+        return latitude;
+    }
+    public double getLong() {
+        return longitude;
     }
 
 }

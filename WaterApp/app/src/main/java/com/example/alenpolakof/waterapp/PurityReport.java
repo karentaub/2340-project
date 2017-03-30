@@ -12,6 +12,7 @@ public class PurityReport extends Report {
     private String condition;
     private int virusPPM;
     private int contaminantPPM;
+
     public PurityReport(Date date, String userReport, LocationReport location,
                         String condition, int virusPPM, int contaminantPPM) {
         super(date, userReport, location);
@@ -34,6 +35,14 @@ public class PurityReport extends Report {
                  + virusPPM + " PPM of viruses and " + contaminantPPM
                  + "PPM of contaminants. \n \n";
     }
+
+    public int getVPPM() {
+        return this.virusPPM;
+    }
+    public int getCPPM() {
+        return this.contaminantPPM;
+    }
+
 
 
 }

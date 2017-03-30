@@ -26,7 +26,7 @@
             android:layout_marginTop="13dp"
             android:id="@+id/virus_radioButton" />
         <RadioButton
-            android:text="Well"
+            android:text="Contaminant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/radioGroup"
@@ -35,13 +35,20 @@
             android:id="@+id/contaminant_radioButton" />
 
     </RadioGroup>
-
     <EditText
-        android:hint="Year"
+        android:hint="Latitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/historical_year"
-        android:layout_marginTop="42dp"
+        android:id="@+id/hlatitude"
+        android:layout_below="@+id/hlongitude"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:hint="Longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hlongitude"
+        android:layout_marginTop="75dp"
         android:layout_below="@+id/historical_radioGroup"
         android:layout_alignParentStart="true" />
 

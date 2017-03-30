@@ -3,6 +3,8 @@ package com.example.alenpolakof.waterapp;
 /**
  * Created by Arthur on 2/21/2017.
  */
+import com.google.android.gms.maps.model.LatLng;
+
 import javax.xml.transform.Source;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,7 +25,6 @@ public class TempDB {
     private ArrayList<String> types; //array of types
     private ArrayList<Report> purityReports;
     private ArrayList<Report> sourceReports;
-
     private ArrayList<String> passwords; // array of passwords
 
     /**
@@ -92,7 +93,6 @@ public class TempDB {
     public void addPurityReport(Report report) {
         purityReports.add(report);
     }
-
     /**
      * sets username of userlogged to id user permissions and know what profile
      * to edit
@@ -207,6 +207,25 @@ public class TempDB {
         allReports.addAll(sourceReports);
         return allReports;
     }
+
+    public ArrayList<PurityReport> getReportsYearLoc(LatLng latLng) {
+        ArrayList<PurityReport> rep = new ArrayList<>();
+        double parameterLat = latLng.latitude;
+        double parameterLon = latLng.longitude;
+        for (Report report : purityReports) {
+            double repLat = report.getLocation().latitude;
+            double repLon = report.getLocation().longitude;
+            boolean checkLat = parameterLat - 10 <= repLat && parameterLat + 10 >= repLat;
+            boolean checkLong = parameterLon - 10 <= repLon && parameterLon + 10 >= repLon;
+
+            if (checkLat && checkLong) {
+                rep.add((PurityReport) report);
+            }
+        }
+        return rep;
+    }
+
+
 
     public ArrayList<Report> getSourceReports() {
         return sourceReports;

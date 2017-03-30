@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentManager;
 
 public class HistoricalCreateActivity extends AppCompatActivity {
     ViewPager mViewPager;
-    Fragment firstFragment;
-    Fragment secondFragment;
+    FragmentOneHistorical firstFragmentH;
+    Fragment secondFragmentH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +21,8 @@ public class HistoricalCreateActivity extends AppCompatActivity {
         mViewPager.setAdapter(new SamplePagerAdapter(
                 getSupportFragmentManager()));
         int i = mViewPager.getCurrentItem();
-        firstFragment = new FragmentOneHistorical();
-        secondFragment = new FragmentTwoHistorical();
+        firstFragmentH = new FragmentOneHistorical();
+        secondFragmentH = new FragmentTwoHistorical();
 
     }
 
@@ -38,9 +38,9 @@ public class HistoricalCreateActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             /** Show a Fragment based on the position of the current screen */
             if (position == 0) {
-                return firstFragment;
+                return firstFragmentH;
             }
-            return secondFragment;
+            return secondFragmentH;
             }
 
 
@@ -52,9 +52,9 @@ public class HistoricalCreateActivity extends AppCompatActivity {
 
     }
 
-    public Fragment getFragmentTwo() {
-        return secondFragment;
+    public Fragment getFragmentTwoH() {
+        return secondFragmentH;
     }
 
-    public Fragment getFragmentOne() {return firstFragment; }
+    public FragmentOneHistorical getFragmentOneH() {return firstFragmentH; }
 }
