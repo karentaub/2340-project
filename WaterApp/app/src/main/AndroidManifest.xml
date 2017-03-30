@@ -41,7 +41,11 @@
         <activity
                 android:name=".ReportViewAllActivity"
                 android:label="@string/title_activity_report_view_all"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".HistoricalCreateActivity"
+            android:label="HistoricalCreateActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

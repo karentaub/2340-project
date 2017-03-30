@@ -62,6 +62,8 @@ public class RegistrationActivity extends AppCompatActivity{
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                TempDB.getTempDB().loadDB();
                 //get name & username & password & usertype in textboxes
                 //name
                 TextView personName = (TextView) findViewById(R.id.name_registration_EditText);
@@ -113,6 +115,8 @@ public class RegistrationActivity extends AppCompatActivity{
                             });
                     success.show();
                 }
+                TempDB.getTempDB().saveDB();
+
             }
         });
     }

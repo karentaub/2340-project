@@ -6,8 +6,16 @@ package com.example.alenpolakof.waterapp;
 import javax.xml.transform.Source;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 
 public class TempDB {
+    private static final String FILENAME = "data.txt";
     private static TempDB instance = new TempDB();
     private String userLogged; //user logged in
     private ArrayList<String> names; //array of names of users
@@ -203,4 +211,102 @@ public class TempDB {
     public ArrayList<Report> getSourceReports() {
         return sourceReports;
     }
+
+
+    public void saveDB(){
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME))) {
+
+            String a = "";
+            for (String name : names) {
+                a+= name + " ";
+            }
+            bw.write(a);
+            bw.newLine();
+
+            String b = "";
+            for (String user : usernames) {
+                b += user+ " ";
+            }
+            bw.write(b);
+            bw.newLine();
+
+            String c = "";
+            for (String type : types) {
+                c += type + " ";
+            }
+            bw.write(c);
+
+
+            String d = "";
+            for (String pass : passwords) {
+                c += pass + " ";
+            }
+            bw.write(d);
+
+            // no need to close it.
+            //bw.close();
+
+            System.out.println("Done");
+
+            // append to end of file
+
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
+
+    public void loadDB(){
+
+
+        BufferedReader br = null;
+        FileReader fr = null;
+
+        try {
+
+            fr = new FileReader(FILENAME);
+            br = new BufferedReader(fr);
+
+            String sCurrentLine;
+
+            br = new BufferedReader(new FileReader(FILENAME));
+            String rNames = br.readLine();
+            String rUsers = br.readLine();
+            String rTypes = br.readLine();
+            String rPass = br.readLine();
+
+
+            names = new ArrayList<>(Arrays.asList(rNames.trim().split(" ")));
+            usernames = new ArrayList<>(Arrays.asList(rUsers.trim().split(" ")));
+            types = new ArrayList<>(Arrays.asList(rTypes.trim().split(" ")));
+            passwords = new ArrayList<>(Arrays.asList(rPass.trim().split(" ")));
+
+
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (br != null)
+                    br.close();
+
+                if (fr != null)
+                    fr.close();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+
+            }
+        }
+    }
+
+
 }

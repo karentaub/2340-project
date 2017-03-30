@@ -97,7 +97,6 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_reports) {
             Intent intent = new Intent(getApplicationContext(), ReportViewActivty.class);
             startActivity(intent);
-
         } else if (id == R.id.nav_settings) {
             Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
             startActivity(intent);
@@ -107,7 +106,10 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.view_reports) {
             Intent intent = new Intent(getApplicationContext(), ReportViewAllActivity.class);
             startActivity(intent);
-        }
+        } else if (id == R.id.nav_historical) {
+        Intent intent = new Intent(getApplicationContext(), HistoricalCreateActivity.class);
+        startActivity(intent);
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
