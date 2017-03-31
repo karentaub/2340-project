@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.content.Context;
+import android.widget.Toast;
 import android.content.Intent;
 
 import com.example.alenpolakof.waterapp.model.ReportsMapActivity;
@@ -107,8 +108,13 @@ public class HomeActivity extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(), ReportViewAllActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_historical) {
-        Intent intent = new Intent(getApplicationContext(), HistoricalCreateActivity.class);
-        startActivity(intent);
+            if (TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()).equalsIgnoreCase("manager")) {
+                Intent intent = new Intent(getApplicationContext(), HistoricalCreateActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "You cannot do this",
+                        Toast.LENGTH_SHORT).show();
+        }
     }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
