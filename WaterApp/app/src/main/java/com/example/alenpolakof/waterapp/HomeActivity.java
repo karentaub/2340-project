@@ -16,6 +16,19 @@ import android.widget.TextView;
 import android.content.Context;
 import android.widget.Toast;
 import android.content.Intent;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
 
 import com.example.alenpolakof.waterapp.model.ReportsMapActivity;
 
@@ -23,12 +36,31 @@ import com.example.alenpolakof.waterapp.model.ReportsMapActivity;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    private FirebaseAuth mAuth;
+    private String type;
+    private String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
+        final String userLooged = mAuth.getCurrentUser().getUid();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                type = dataSnapshot.child("authentication").child(userLooged).child("type").getValue().toString();
+                name = dataSnapshot.child("authentication").child(userLooged).child("name").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +68,7 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent;
-                if (!(TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()).equalsIgnoreCase("user"))) {
+                if (!type.equalsIgnoreCase("User")) {
                     intent = new Intent(context, ZeroActivity.class);
                 } else {
                     intent = new Intent(context, ReportCreateActivity.class);
@@ -69,7 +101,7 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         TextView usernameDisplay = (TextView) findViewById(R.id.username_nav_textView);
-        usernameDisplay.setText(TempDB.getTempDB().getUserLogged());
+        usernameDisplay.setText(name);
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
@@ -103,12 +135,13 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(getApplicationContext(), OpeningScreenActivity.class);
+            mAuth.signOut();
             startActivity(intent);
         } else if (id == R.id.view_reports) {
             Intent intent = new Intent(getApplicationContext(), ReportViewAllActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_historical) {
-            if (TempDB.getTempDB().getType(TempDB.getTempDB().getUserLogged()).equalsIgnoreCase("manager")) {
+            if (type.equalsIgnoreCase("manager")) {
                 Intent intent = new Intent(getApplicationContext(), HistoricalCreateActivity.class);
                 startActivity(intent);
             } else {

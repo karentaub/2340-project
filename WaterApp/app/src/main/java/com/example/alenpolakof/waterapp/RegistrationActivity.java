@@ -3,6 +3,9 @@ package com.example.alenpolakof.waterapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,8 +14,20 @@ import android.content.Intent;
 import android.content.Context;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by apolakof on 2/13/17.
@@ -23,6 +38,14 @@ public class RegistrationActivity extends AppCompatActivity{
 
 
     private Spinner spinner;
+    private FirebaseAuth mAuth;
+    private boolean usernameTaken = false;
+    public String email;
+    public static String name;
+    public static String password;
+    public static String type;
+
+
 
     /**
      * this sets the layout for the registration page and
@@ -33,6 +56,7 @@ public class RegistrationActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
 
         spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -62,62 +86,50 @@ public class RegistrationActivity extends AppCompatActivity{
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                TempDB.getTempDB().loadDB();
-                //get name & username & password & usertype in textboxes
-                //name
                 TextView personName = (TextView) findViewById(R.id.name_registration_EditText);
-                String name = personName.getText().toString();
-                //username
-                TextView uname = (TextView) findViewById(R.id.username_registration_EditText);
-                String username = uname.getText().toString();
-                //usertype
-                String type = "User";
-                type = (String) spinner.getSelectedItem();
-
-                //password
-                TextView pass = (TextView) findViewById(R.id.password_registration_EditText);
-                String password = pass.getText().toString();
-
-                //what to do if username conflict
-                if (TempDB.getTempDB().isUsernameTaken(username)) {
-                    //show conflict dialog, do nothing when ok is pressed
-                    AlertDialog conflict = new AlertDialog.Builder(RegistrationActivity.this).create();
-                    conflict.setMessage("Username already taken! Please try something else");
-                    conflict.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
-                    conflict.show();
-                //if no conflict, successful registration
+                name = personName.getText().toString();
+                TextView personEmail = (TextView) findViewById(R.id.username_registration_EditText);
+                email = personEmail.getText().toString();
+                TextView personPass = (TextView) findViewById(R.id.password_registration_EditText);
+                password = personPass.getText().toString();
+                type = spinner.getSelectedItem().toString();
+                if(password.length() < 6) {
+                    Toast.makeText(getApplicationContext(), "Password must be at least 6 characters long", Toast.LENGTH_SHORT).show();
+                } else if ((!name.isEmpty()) && (!email.isEmpty()) && (!password.isEmpty()) && (!type.isEmpty())) {
+                    registerUser();
                 } else {
-                    //add name username and password and type to TempDB list class
-                    TempDB.getTempDB().addUser(name, username, type, password);
-                    //create user object!!!
-
-
-                    AlertDialog success = new AlertDialog.Builder(RegistrationActivity.this).create();
-                    success.setMessage("You successfully created a new account!");
-                    final View v1 = v; //made this so i can use it inside inner class (onclicklistener below)
-                    success.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                    //go to login screen when ok is pressed
-                                    Context context = v1.getContext();
-                                    Intent intent = new Intent(context, LoginActivity.class);
-                                    startActivity(intent);
-                                }
-                            });
-                    success.show();
+                    Toast.makeText(getApplicationContext(), "You cannot register until you enter all the fields.", Toast.LENGTH_SHORT).show();
                 }
-                TempDB.getTempDB().saveDB();
 
             }
         });
     }
+    private void registerUser() {
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        if ((user != null) && task.isSuccessful()) {
+                            DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("authentication").child(user.getUid());
+                            mDatabase.child("name").setValue(name);
+                            mDatabase.child("password").setValue(password);
+                            mDatabase.child("type").setValue(type);
+                            mDatabase.child("email").setValue(email);
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(intent);
+                        } else if (!task.isSuccessful()) {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(RegistrationActivity.this, "User with this email already exist.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+
+
+    }
+
 }
+

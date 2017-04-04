@@ -21,6 +21,7 @@ public class ReportViewAllActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         View secLayout = findViewById(R.id.get_report_all_thing);
         TextView reports = (TextView) secLayout.findViewById(R.id.reports_all_text);
+
         reports.setText(TempDB.getTempDB().printReports());
         Button cancel = (Button) findViewById(R.id.cancel_create_all_activity);
         cancel.setOnClickListener(new View.OnClickListener() {
