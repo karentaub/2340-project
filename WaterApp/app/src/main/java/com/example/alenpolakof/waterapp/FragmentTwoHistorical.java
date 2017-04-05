@@ -162,6 +162,24 @@ public class FragmentTwoHistorical extends Fragment {
                         }
                     }
                 }
+                for (Integer month : dataMap.keySet()) {
+                    double average;
+                    Integer sum = 0;
+                    for (Integer ppm : dataMap.get(month)) {
+                        sum += ppm;
+                    }
+                    average = sum.doubleValue() / dataMap.get(month).size();
+                    points.add(new DataPoint(month, average));
+                }
+
+                LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points.toArray(new DataPoint[points.size()]));
+                //HARDCODED DATA POINT, UNLESS WE HAVE DATA FROM DIFFERENT MONTHS
+                series.appendData(new DataPoint(8, 1),false,12);
+
+                
+                graph.addSeries(series);
+
+
             }
 
             @Override
@@ -170,17 +188,6 @@ public class FragmentTwoHistorical extends Fragment {
             }
         });
 
-        for (Integer month : dataMap.keySet()) {
-            double average;
-            Integer sum = 0;
-            for (Integer ppm : dataMap.get(month)) {
-                sum += ppm;
-            }
-            average = sum.doubleValue() / dataMap.get(month).size();
-            points.add(new DataPoint(month + 1, average));
-        }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points.toArray(new DataPoint[points.size()]));
-        graph.addSeries(series);
     }
 }
