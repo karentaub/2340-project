@@ -71,6 +71,7 @@ public class FragmentOneHistorical extends Fragment {
                             Toast.LENGTH_SHORT).show();
 
                 } else {
+                    year = Integer.parseInt(textyear.getText().toString());
                     ((HistoricalCreateActivity)getActivity()).secondFragmentH.setInfo(year, latitude, longitude, option);
                     ((ViewPager)getActivity().findViewById(R.id.pager)).setCurrentItem(2, true);
                 }

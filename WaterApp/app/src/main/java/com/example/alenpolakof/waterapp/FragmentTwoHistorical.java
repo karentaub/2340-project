@@ -89,38 +89,20 @@ public class FragmentTwoHistorical extends Fragment {
 
     }
 
-    public boolean checkReport(int year, double latitude, double longitude) {
-        if (this.year != year) {
-            return false;
-        }
-        boolean latBool;
-        boolean lonBool;
+    public boolean checkReport(int y, double latitude, double longitude) {
 
-        if (longitude > 169.99) {
-            lonBool = (longitude > this.longitude - 10) && (longitude < -360 + longitude);
-        } else if (longitude < -170) {
-            lonBool = longitude < this.longitude + 10 && (longitude > 0 || longitude > this.longitude + 350);
-        } else {
-            lonBool = longitude > this.longitude - 10 && longitude < this.longitude + 10;
-        }
-
-        if (latitude > 80) {
-            latBool = latitude > this.latitude - 10;
-        } else if (latitude < -80) {
-            latBool = latitude < this.latitude + 10;
-        } else {
-            latBool = latitude < this.latitude + 10 && latitude > this.latitude - 10;
-        }
-        return (latBool && lonBool);
+        return (this.year == y
+                && Math.floor(this.latitude) == Math.floor(latitude))
+                && (Math.floor(this.longitude) == Math.floor(longitude));
     }
     public void setInfo(int year, double latitude, double longitude, String option) {
         //LOS FRAGMENTOS SE CREAN DE FORMA RARA ENTONCES TENES QUE HACER ESTO PARA PODER ACCEDER A LA INFORMACION CUANDO PASAS EL FRAGMENTO. DEJALO ASI, ESTO ANDA
         //LA INFORMACION ESTA TODA  BIEN, LO UNICO QUE HAY QUE HACER ES VER SI ESTA ENTRE 10 MAS O 10 MENOS Y PLOT. SI PRECISAS LOS VALORES DE LOS EDIT TEXT DE
         //FRAGMENT ONE ENTONCES TENES QUE PONER ESTA LINEA CON EL VALOR QUE PRECISES:
 
-        //int myTest = ((HistoricalCreateActivity)getActivity()).getFragmentOneH().getYear();
-        //int myTEST2 = (int) ((HistoricalCreateActivity)getActivity()).getFragmentOneH().getLat();
-        //etc. Avisame si precisas algo.
+        this.year = ((HistoricalCreateActivity)getActivity()).getFragmentOneH().getYear();
+        this.latitude = (int) ((HistoricalCreateActivity)getActivity()).getFragmentOneH().getLat();
+        this.longitude = (int) ((HistoricalCreateActivity)getActivity()).getFragmentOneH().getLong();
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -150,15 +132,15 @@ public class FragmentTwoHistorical extends Fragment {
                             }
                             epoch = (long) (Integer.parseInt(report.child("time").getValue().toString()));
                             Date date = new Date(epoch * 1000);
-                            int year = date.getYear() + 1900;
+                            int y = date.getYear() + 1900;
 
-                            //if (checkReport(year, latitude, longitude)) {
+                            if (checkReport(y, latitude, longitude)) {
                                 int month = date.getMonth() + 1;
                                 if (!dataMap.containsKey(month)) {
                                     dataMap.put(month, new ArrayList<Integer>());
                                 }
                                 dataMap.get(month).add(ppm);
-                            //}
+                            }
                         }
                     }
                 }
@@ -175,8 +157,6 @@ public class FragmentTwoHistorical extends Fragment {
                 LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points.toArray(new DataPoint[points.size()]));
                 //HARDCODED DATA POINT, UNLESS WE HAVE DATA FROM DIFFERENT MONTHS
                 series.appendData(new DataPoint(8, 1),false,12);
-
-                
                 graph.addSeries(series);
 
 
