@@ -39,6 +39,7 @@ public class ReportViewActivty extends AppCompatActivity {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         View secLayout = findViewById(R.id.get_report_thing);
         final TextView reportsTextView = (TextView) secLayout.findViewById(R.id.reports_text);
+        reportsTextView.setText(null);
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -50,7 +51,7 @@ public class ReportViewActivty extends AppCompatActivity {
                     double longitude = Double.parseDouble(report.child("location").child("longitude").getValue().toString());
                     int virusPPM = Integer.parseInt(report.child("virusPPM").getValue().toString());
                     String waterCondition = report.child("waterCondition").getValue().toString();
-                    reportsTextView.setText(toStringReport(name, time, contaminantPPM, latitude, longitude, virusPPM, waterCondition));
+                    reportsTextView.setText(reportsTextView.getText() + toStringReport(name, time, contaminantPPM, latitude, longitude, virusPPM, waterCondition));
                 }
                 for(DataSnapshot report : dataSnapshot.child("reports").child("source").child(userID).getChildren()) {
                     String name = report.child("name").getValue().toString();
@@ -59,7 +60,7 @@ public class ReportViewActivty extends AppCompatActivity {
                     double longitude = Double.parseDouble(report.child("location").child("longitude").getValue().toString());
                     String waterType = report.child("waterType").getValue().toString();
                     String waterCondition = report.child("waterCondition").getValue().toString();
-                    reportsTextView.setText(toStringReportSource(name, time, latitude, longitude, waterType, waterCondition));
+                    reportsTextView.setText(reportsTextView.getText() + toStringReportSource(name, time, latitude, longitude, waterType, waterCondition));
                 }
             }
 
@@ -100,14 +101,14 @@ public class ReportViewActivty extends AppCompatActivity {
      * @param waterCondition
      */
     public String toStringReport(String name, long time, int contaminantPPM, double latitude, double longitude, int virusPPM, String waterCondition) {
-        return "Purity Report " + time + ":\n"  + super.toString()
+        return "Purity Report " + time + ":\n"
                 +" is in " + waterCondition + " condition with "
                 + virusPPM + " PPM of viruses and " + contaminantPPM
-                + "PPM of contaminants. \n \n";
+                + "PPM of contaminants, according to " + name + " . \n \n";
     }
     public String toStringReportSource(String name, long time, double latitude, double longitude, String waterType, String waterCondition) {
-        return "Source Report " + time + ":\n"  + super.toString()
+        return "Source Report " + time + ":\n"
                 + " of type " + waterType + " is in " + waterCondition
-                + " condition. \n \n";
+                + " condition, according to " + name + " . \n \n";
     }
 }

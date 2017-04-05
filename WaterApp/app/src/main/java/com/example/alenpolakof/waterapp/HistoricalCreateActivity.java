@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentManager;
 public class HistoricalCreateActivity extends AppCompatActivity {
     ViewPager mViewPager;
     FragmentOneHistorical firstFragmentH;
-    Fragment secondFragmentH;
+    FragmentTwoHistorical secondFragmentH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class HistoricalCreateActivity extends AppCompatActivity {
 
     }
 
-    public Fragment getFragmentTwoH() {
+    public FragmentTwoHistorical getFragmentTwoH() {
         return secondFragmentH;
     }
 

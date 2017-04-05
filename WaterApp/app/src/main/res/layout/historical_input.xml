@@ -80,5 +80,13 @@
         android:layout_alignParentStart="true"
         android:id="@+id/hcancel_fragment_one" />
 
+    <EditText
+        android:hint="Year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/hyear"
+        android:layout_below="@+id/hlatitude"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

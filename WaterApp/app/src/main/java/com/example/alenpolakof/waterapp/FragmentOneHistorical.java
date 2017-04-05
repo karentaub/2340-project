@@ -34,6 +34,9 @@ public class FragmentOneHistorical extends Fragment {
         RadioGroup radioGroup = (RadioGroup) rootView.findViewById(R.id.historical_radioGroup);
         final EditText textlon = (EditText) rootView.findViewById(R.id.hlongitude);
         final EditText textlat = (EditText) rootView.findViewById(R.id.hlatitude);
+        final EditText textyear = (EditText) rootView.findViewById(R.id.hyear);
+
+
 
         Button cancel = (Button) rootView.findViewById(R.id.hcancel_fragment_one);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -51,16 +54,24 @@ public class FragmentOneHistorical extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 if (option == null) {
                     Toast.makeText(v.getContext(), "Please choose virus or contaminant",
                             Toast.LENGTH_SHORT).show();
                 } else if (!isValidLat(textlat)) {
-                Toast.makeText(v.getContext(), "Please input valid latitude",
-                        Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Please input valid latitude",
+                            Toast.LENGTH_SHORT).show();
                 } else if (!isValidLong(textlon)) {
-                Toast.makeText(v.getContext(), "Please input valid longitude",
-                        Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), "Please input valid longitude",
+                            Toast.LENGTH_SHORT).show();
+                } else if (!textyear.getText().toString().isEmpty() && !isValidYear(Integer.parseInt(textyear.getText().toString()))) {
+
+                    Toast.makeText(v.getContext(), "Please input valid year",
+                            Toast.LENGTH_SHORT).show();
+
                 } else {
+                    ((HistoricalCreateActivity)getActivity()).secondFragmentH.setInfo(year, latitude, longitude, option);
                     ((ViewPager)getActivity().findViewById(R.id.pager)).setCurrentItem(2, true);
                 }
             }
@@ -78,6 +89,19 @@ public class FragmentOneHistorical extends Fragment {
 
     }
 
+    public boolean isValidYear(int year) {
+        return (year >= 0 && year <= 2017);
+    }
+
+    public boolean isValidLong(EditText lon) {
+        try {
+            longitude = Double.parseDouble(lon.getText().toString());
+
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return (longitude >= -180 && longitude < 180);
+    }
 
 
     public boolean isValidLat(EditText lat) {
@@ -91,15 +115,6 @@ public class FragmentOneHistorical extends Fragment {
 
     }
 
-    public boolean isValidLong(EditText lon) {
-        try {
-            longitude = Double.parseDouble(lon.getText().toString());
-
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-        return (latitude >= -180 && latitude < 180);
-    }
 
     public String getOption() {
         return option;
