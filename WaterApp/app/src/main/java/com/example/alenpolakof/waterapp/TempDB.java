@@ -30,7 +30,7 @@ public class TempDB {
     /**
      * initializes tempdb, private constructor so we only have one instance
      */
-    private TempDB() {
+    public TempDB() {
         this.names = new ArrayList<String>(12);
         this.usernames = new ArrayList<String>(12);
         this.types = new ArrayList<String>(12);
@@ -48,6 +48,63 @@ public class TempDB {
     public static TempDB getTempDB() {
         return instance;
     }
+
+    /**
+     * finds system's user accounts
+     * @return system's user accounts
+     */
+    public ArrayList<String> onlyUsers() {
+        ArrayList<String> users = new ArrayList<String>();
+        for (int i = 0; i < names.size(); i++) {
+            if (types.get(i).equalsIgnoreCase("user")) {
+                users.add(names.get(i));
+            }
+        }
+        return users;
+    }
+
+    /**
+     * finds system's worker accounts
+     * @return system's worker accounts
+     */
+    public ArrayList<String> onlyWorkers() {
+        ArrayList<String> workers = new ArrayList<String>();
+        for (int i = 0; i < names.size(); i++) {
+            if (types.get(i).equalsIgnoreCase("worker")) {
+                workers.add(names.get(i));
+            }
+        }
+        return workers;
+    }
+
+    /**
+     * finds system's mgr accounts
+     * @return system's mgr accounts
+     */
+    public ArrayList<String> onlyManagers() {
+        ArrayList<String> managers = new ArrayList<String>();
+        for (int i = 0; i < names.size(); i++) {
+            if (types.get(i).equalsIgnoreCase("manager")) {
+                managers.add(names.get(i));
+            }
+        }
+        return managers;
+    }
+
+    /**
+     * finds system's admin accounts
+     * @return system's admin accounts
+     */
+    public ArrayList<String> onlyAdmins() {
+        ArrayList<String> admins = new ArrayList<String>();
+        for (int i = 0; i < names.size(); i++) {
+            if (types.get(i).equalsIgnoreCase("admin")) {
+                admins.add(names.get(i));
+            }
+        }
+        return admins;
+    }
+
 
     /**
      * logic to prevent equal usernames (we want usernames to be unique)
@@ -72,6 +129,7 @@ public class TempDB {
         }
         return false;
     }
+
 
     /**
      * adds user to database
