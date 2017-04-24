@@ -16,9 +16,14 @@ import android.widget.TextView;
 import android.content.Context;
 import android.widget.Toast;
 import android.content.Intent;
+
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
@@ -135,6 +140,7 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
             Intent intent = new Intent(getApplicationContext(), OpeningScreenActivity.class);
+            LoginManager.getInstance().logOut();
             mAuth.signOut();
             startActivity(intent);
         } else if (id == R.id.view_reports) {

@@ -3,6 +3,7 @@
           package="com.example.alenpolakof.waterapp">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:allowBackup="true"
@@ -10,6 +11,9 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
         <activity android:name=".OpeningScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -47,6 +51,8 @@
             android:label="HistoricalCreateActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+
     </application>
 
 </manifest>

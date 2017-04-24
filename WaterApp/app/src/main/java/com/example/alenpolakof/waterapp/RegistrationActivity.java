@@ -115,7 +115,6 @@ public class RegistrationActivity extends AppCompatActivity{
                         if ((user != null) && task.isSuccessful()) {
                             DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("authentication").child(user.getUid());
                             mDatabase.child("name").setValue(name);
-                            mDatabase.child("password").setValue(password);
                             mDatabase.child("type").setValue(type);
                             mDatabase.child("email").setValue(email);
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

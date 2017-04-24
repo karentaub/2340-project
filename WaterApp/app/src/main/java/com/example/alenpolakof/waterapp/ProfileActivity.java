@@ -59,7 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
         emailTextView.setText(userLogged.getEmail().toString());
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         nameTextView.setText(RegistrationActivity.name);
-        passwordTextView.setText(RegistrationActivity.password);
+        passwordTextView.setText("***********");
 
 
 
@@ -75,7 +75,6 @@ public class ProfileActivity extends AppCompatActivity {
                 int posSelection = 0;
                 String previousSelection;
                 nameTextView.setText(dataSnapshot.child("authentication").child(userLogged.getUid()).child("name").getValue().toString());
-                passwordTextView.setText(dataSnapshot.child("authentication").child(userLogged.getUid()).child("password").getValue().toString());
                 previousSelection = dataSnapshot.child("authentication").child(userLogged.getUid()).child("type").getValue().toString();
                 posSelection = selectionToPosition(previousSelection, posSelection);
                 accountType.setSelection(posSelection, false);
@@ -163,7 +162,6 @@ public class ProfileActivity extends AppCompatActivity {
                             DatabaseReference databaseRefUpdate = FirebaseDatabase.getInstance().getReference().child("authentication").child(userLogged.getUid());
                             databaseRefUpdate.child("name").setValue(name);
                             databaseRefUpdate.child("type").setValue(type);
-                            databaseRefUpdate.child("password").setValue(password);
                             FirebaseAuth.getInstance().getCurrentUser().updatePassword(password);
                             Toast.makeText(getApplicationContext(), "Your account has been updated", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
